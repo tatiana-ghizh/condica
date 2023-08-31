@@ -1,0 +1,161 @@
+﻿@using CVU.CONDICA.Client.Constants;
+@using CVU.CONDICA.Client.Services;
+@using CVU.CONDICA.Dto.Enums;
+@using CVU.CONDICA.Dto.Generic;
+@using CVU.CONDICA.Dto.Positions;
+@using CVU.CONDICA.Dto.UserManagement;
+@using System.Reflection
+@using Microsoft.AspNetCore.Components.Authorization;
+
+@inject BlazorHttpClient httpClient;
+@inject Services.DialogsService confirmationService;
+@inject AuthenticationStateProvider AuthenticationStateProvider;
+@inject CurrentUserService currentUserService;
+
+@if (user != null)
+{
+    <MudForm @ref="form" @bind-IsValid="@success">
+        <MudGrid>
+            @if(Id.HasValue)
+            {
+                <MudItem xs="12">
+                    <MudTextField @bind-Value="@user.FullName" Label="Nume Complet" Disabled=true ReadOnly=true Variant="Variant.Text"></MudTextField>
+                </MudItem>
+               
+            }
+             <MudItem xs="4">
+                <MudTextField @bind-Value="@user.Email" Label="Adresa de email" Required="true" Variant="Variant.Text"></MudTextField>
+            </MudItem>
+            <MudItem xs="4">
+                <MudTextField @bind-Value="@user.FirstName" Label="Prenume" Required="true" RequiredError="Prenume este obligatoriu!" Variant="Variant.Text"></MudTextField>
+            </MudItem>
+            <MudItem xs="4">
+                <MudTextField @bind-Value="@user.LastName" Label="Nume" Required="true" RequiredError="Numele este obligatoriu!" Variant="Variant.Text"></MudTextField>
+            </MudItem>
+            <MudItem xs="12">
+                <MudSelect T="PositionDto" Label="Poziția" MultiSelection=false Value="@positions.Where(d => d.Id == user.PositionId).First()">
+                    @foreach(var position in positions)
+                    {
+                        <MudSelectItem Value="position" />
+                    }
+                </MudSelect>
+            </MudItem>
+
+            <MudItem xs="6">
+                <MudSelect T="Role" Label="Rol" Disabled="!isAdmin" MultiSelection=false ValueChanged="@(e=> edited.Role = e)" SelectedValues="@roles.Where(d => d == user.Role)" AnchorOrigin="Origin.BottomCenter">
+                    @foreach (var role in roles)
+                    {
+                        <MudSelectItem Value="role" />
+                    }
+                </MudSelect>
+            </MudItem>
+
+            <MudItem xs="6">
+                <MudSelect T="string" Label="Statut" Disabled="!isAdmin" MultiSelection=false ValueChanged="@(e=> user.IsBlocked = e == "Activ" ? false : true)" SelectedValues="@(user.IsBlocked == true ? new List<string> { "Blocat" } : new List<string> { "Activ" })" AnchorOrigin="Origin.BottomCenter">
+                    <MudSelectItem Value="@("Activ")" />
+                    <MudSelectItem Value="@("Blocat")" />
+                </MudSelect>
+            </MudItem>
+        </MudGrid>
+        <MudButton StartIcon="@Icons.Material.Filled.Save" Class="mt-5" Variant="Variant.Filled" OnClick="@(async () => await Save())" Color="Color.Primary">Salvează</MudButton>
+        
+    </MudForm>
+}
+@code {
+
+    [Parameter]
+    public int? Id { get; set; }
+    [Parameter]
+    public bool? Check { get; set; }
+    [Parameter]
+    public Func<Task> Callback { get; set; }
+
+    MudForm form;
+
+    private bool success;
+    private bool isAdmin = false;
+
+    public string FullName { get; set; }
+    public string Email { get; set; }
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+    public int PositionId { get; set; }
+    public int RoleId { get; set; }
+    public bool IsBlocked { get; set; }
+
+    private UserDto user;
+
+    private EditUserDto original;
+    private EditUserDto edited;
+
+    private IEnumerable<Role> roles = Generics.Enumerate<Role>();
+    private IEnumerable<PositionDto> positions = Enumerable.Empty<PositionDto>();
+
+    protected async override Task OnInitializedAsync()
+    {
+        var currentUser = await currentUserService.GetAsync();
+
+        positions = await httpClient.Get<IEnumerable<PositionDto>>($"{ApplicationEndpoints.Positions}/positions-dropdown");
+
+        if (currentUser.Role == Role.Administrator)
+        {
+            isAdmin = true;
+        }
+
+        if(Id.HasValue)
+        {
+            user = await httpClient.Get<UserDto>($"{ApplicationEndpoints.Users}/{Id}");
+        }
+
+        //if (user != null)
+        //{
+        //    original = new EditUserDto(user);
+        //    edited = new EditUserDto(user);
+
+        //    success = true;
+        //}
+
+    }
+
+    private async Task Save()
+    {
+        bool isSuccessfull = false;
+
+        if(!Id.HasValue)
+        {
+            var postModel = new CreateUserDto(user.Email, user.FirstName, user.LastName, user.PositionId, user.RoleId, user.IsBlocked);
+
+            isSuccessfull = await httpClient.Post<CreateUserDto>(ApplicationEndpoints.Users, postModel);
+
+        }
+        else
+        {
+            var original = new EditUserDto(user.FirstName, user.LastName, user.PositionId, user.Role, user.IsBlocked);
+
+
+            bool confirmed = await confirmationService.OpenConfirmationDialog("Esti sigur ca vrei sa salvezi informatiile modificate?");
+
+            if (!confirmed)
+            {
+                return;
+            }
+        }
+
+
+      
+
+        var model = Generics.GetDifferences(original, edited);
+
+        bool successfull = false;
+
+        successfull = await httpClient.Patch<EditUserDto>($"{ApplicationEndpoints.Users}/{Id}", model);
+
+        if (successfull)
+            Callback?.Invoke();
+    }
+
+    private string GetAcocuntStatus()
+    {
+        return user.IsBlocked ? "Blocked" : "Active";
+    }
+}

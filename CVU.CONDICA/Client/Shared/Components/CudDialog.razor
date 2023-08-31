@@ -1,0 +1,51 @@
+﻿@using CVU.CONDICA.Client.Services;
+@using System.Reflection;
+@using MudBlazor;
+
+@inject BlazorHttpClient httpClient;
+
+<MudDialog>
+    <DialogContent>
+        <DynamicComponent Type="typeof(TComponent)" Parameters="parameters"></DynamicComponent>
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="Cancel" Color="Color.Error">Anulează</MudButton>
+    </DialogActions>
+</MudDialog>
+
+@typeparam TComponent
+
+@code {
+
+    [CascadingParameter]
+    MudDialogInstance MudDialog { get; set; }
+
+    TComponent Component { get; set; }
+
+    [Parameter]
+    public int? Id { get; set; }
+
+    [Parameter]
+    public Func<Task> Callback { get; set; }
+
+    [Parameter]
+    public bool? Check { get; set; }
+
+    void Cancel() => MudDialog.Cancel();
+
+    private Dictionary<string, object> parameters = new Dictionary<string, object>();
+
+    protected override void OnInitialized()
+    {
+        parameters.Add("Id", Id);
+        parameters.Add("Callback", (object)OnSuccessfullySaved);
+        parameters.Add("Check", Check);
+    }
+
+    public async Task OnSuccessfullySaved()
+    {
+        await Callback?.Invoke();
+
+        MudDialog.Close();
+    }
+}

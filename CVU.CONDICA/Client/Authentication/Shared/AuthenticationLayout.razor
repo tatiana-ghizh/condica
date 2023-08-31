@@ -1,0 +1,18 @@
+﻿@inherits LayoutComponentBase
+@layout MainLayout
+
+@*@inject NavigationManager navManager;*@
+
+<MudMainContent Style="height: 100vh; background-image: url('250x215.png'); background-size: cover;">
+    <MudContainer Class="d-flex align-center flex-grow-1 gap-4" Style="height: 100%" MaxWidth="MaxWidth.ExtraExtraLarge">
+
+        <MudStack Class="relative" Style="margin: 0 auto">
+            <MudImage Src="qt=q_95.webp" Width="400" Height="400" Elevation="0" Class="rounded-lg" ObjectFit="ObjectFit.ScaleDown" />
+            @Body
+        </MudStack>
+    </MudContainer>
+</MudMainContent>
+
+@code {
+
+}

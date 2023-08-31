@@ -1,0 +1,95 @@
+﻿@page "/application/companyproject"
+
+@using CVU.CONDICA.Client.Application.Pages.CompanyProject.Components;
+@using CVU.CONDICA.Client.Constants;
+@using CVU.CONDICA.Client.Services;
+@using CVU.CONDICA.Dto.CompanyProjects;
+
+@inject BlazorHttpClient blazorHttpClient
+@inject PaginationManager<CompanyProjectDto, CompanyProjectListQueryDto> pm;
+@inject DialogsService dialogsService;
+
+<PageTitle>Proiecte CODWER</PageTitle>
+
+<div class="d-flex justify-end flex-grow-1 gap-4">
+    <MudButton StartIcon="@Icons.Material.Filled.Add" Variant="Variant.Filled" Color="Color.Success" Class="ml-auto" OnClick="() => OpenDialog()">Adaugă Proiect</MudButton>
+</div>
+
+<MudExpansionPanel Dense="true" DisableGutters="true" Class="mb-6" Text="Filtre" Icon="@Icons.Material.Filled.Search">
+    <MudForm>
+        <MudGrid>
+            <MudItem xs="4">
+                <MudTextField @bind-Value="pm.QueryModel.Name" Label="Prenume" MaxLength="50" />
+            </MudItem>
+            <MudItem xs="4">
+                <MudTextField @bind-Value="pm.QueryModel.Description" Label="Nume" MaxLength="50" />
+            </MudItem>
+        </MudGrid>
+
+        <MudButton Class="mt-3" Variant="Variant.Filled" Color="Color.Primary" Disabled="pm.Searching" OnClick="() => pm.Search()">
+            @if (pm.Searching)
+            {
+                <MudProgressCircular Size="Size.Small" Indeterminate="true" />
+                <span class="ms-1">căutăm...</span>
+            }
+            else
+            {
+                <MudIcon Icon="@Icons.Material.Filled.Search" />
+                <span class="ms-1">Caută</span>
+            }
+        </MudButton>
+    </MudForm>
+</MudExpansionPanel>
+
+<MudTable Items="@pm.Items" T="CompanyProjectDto" Hover="true" Class="mt-3" HorizontalScrollbar="true">
+    <HeaderContent>
+        <MudTh >Denumirea</MudTh>
+        <MudTh>Descrierea</MudTh>
+        <MudTh>Data început</MudTh>
+        <MudTh>Data de încheiere</MudTh>
+        <MudTh>Acțiuni</MudTh>
+    </HeaderContent>
+    <RowTemplate Context="project">
+        <MudTd>@project.Name</MudTd>
+        <MudTd>@project.Description</MudTd>
+        <MudTd>@project.StartDay</MudTd>
+        <MudTd>@project.EndDay</MudTd>
+        <MudTh>
+            @*<MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="() => OpenDialog(project.Id)">Detalii</MudButton>*@
+            <MudIconButton Icon="@Icons.Material.Filled.EditNote" Variant="Variant.Filled" Color="Color.Primary" OnClick="() => OpenDialog(project.Id)"></MudIconButton>
+            <MudIconButton Icon="@Icons.Material.Filled.DeleteForever" Variant="Variant.Filled" Color="Color.Error"></MudIconButton>
+            @*<MudButton Class="p-0" StartIcon="@Icons.Material.Filled.EditNote" Variant="Variant.Filled" Color="Color.Primary" OnClick="() => OpenDialog(project.Id)"></MudButton>*@
+            @*<MudButton Class="p-0" StartIcon="@Icons.Material.Filled.Delete" Variant="Variant.Filled" Color="Color.Error"></MudButton>*@
+        </MudTh>
+    </RowTemplate>
+</MudTable>
+
+@if (pm.Items != null && pm.Items.Any())
+{
+    <MudGrid Class="mt-6">
+        <MudItem xs="8">
+            <MudPagination Color="Color.Primary" Count="@pm.PageDetails.TotalPages" Selected="@pm.PageDetails.CurrentPage" SelectedChanged="pm.PageChanged" />
+        </MudItem>
+        <MudItem xs="4">
+            <MudText Align="Align.Right">Total articole filtrate: @pm.PageDetails.TotalCount</MudText>
+        </MudItem>
+    </MudGrid>
+}
+
+@code {
+
+    protected override async Task OnInitializedAsync()
+    {
+        pm.SetRequestUrl(ApplicationEndpoints.CompanyProjects);
+
+        await pm.Search();
+
+    }
+
+    private void OpenDialog(int? id = null)
+    {
+        var callback = async () => { await pm.Search(); StateHasChanged(); };
+
+        dialogsService.OpenCudDialog<ManageCompanyProject>("Detalii proiect", id, callback);
+    }
+}

@@ -1,0 +1,68 @@
+﻿@using CVU.CONDICA.Client.Constants;
+@using CVU.CONDICA.Client.Services;
+@using CVU.CONDICA.Dto.Positions;
+
+@inject BlazorHttpClient httpClient;
+
+<MudForm @ref="form" @bind-IsValid="@success">
+    <MudGrid>
+        <MudItem xs="12">
+            <MudTextField @bind-Value="Name" Label="Denumirea" Required="true" RequiredError="Denumirea este obligatorie!" Variant="Variant.Text"></MudTextField>
+        </MudItem>
+    </MudGrid>
+    <MudButton StartIcon="@Icons.Material.Filled.Save" Disabled="@(!success)" Class="mt-5" Variant="Variant.Filled" OnClick="@Save" Color="Color.Primary">Salvează</MudButton>
+</MudForm>
+
+@code {
+    [Parameter]
+    public int? Id { get; set; }
+    [Parameter]
+    public bool? Check { get; set; }
+    [Parameter]
+    public Func<Task> Callback { get; set; }
+
+    MudForm form;
+
+    private bool success = false;
+
+    private string Name { get; set; }
+    
+    private PositionDto position;
+
+    protected async override Task OnInitializedAsync()
+    {
+        if (Id.HasValue)
+        {
+            position = await httpClient.Get<PositionDto>($"{ApplicationEndpoints.Positions}/{Id}");
+
+            Name = position.Name;
+        }
+    }
+
+    private async Task Save()
+    {
+        bool isSuccessfull = false;
+
+        if (!Id.HasValue)
+        {
+            var postModel = new CreatePositionDto(Name);
+
+            var id = await httpClient.Post<CreatePositionDto, int>(ApplicationEndpoints.Positions, postModel);
+
+            isSuccessfull = id != 0;
+
+            Id = id;
+        }
+        else
+        {
+            var original = new EditPositionDto(position.Name);
+            var edited = new EditPositionDto(Name);
+
+            var model = Generics.GetDifferences<EditPositionDto>(original, edited);
+
+            isSuccessfull = await httpClient.Patch<EditPositionDto>($"{ApplicationEndpoints.Positions}/{Id}", model);
+        }
+
+        if (isSuccessfull) Callback?.Invoke();
+    }
+}

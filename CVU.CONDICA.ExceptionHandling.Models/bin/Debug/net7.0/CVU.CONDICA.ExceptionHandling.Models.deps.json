@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v7.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v7.0": {
+      "CVU.CONDICA.ExceptionHandling.Models/1.0.0": {
+        "runtime": {
+          "CVU.CONDICA.ExceptionHandling.Models.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "CVU.CONDICA.ExceptionHandling.Models/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

@@ -1,0 +1,116 @@
+﻿@page "/application/vacationrequests"
+
+@using CVU.CONDICA.Client.Application.Pages.Vacations.Components;
+@using CVU.CONDICA.Client.Constants;
+@using CVU.CONDICA.Client.Services;
+@using CVU.CONDICA.Dto.Enums;
+@using CVU.CONDICA.Dto.Vacations;
+
+@inject BlazorHttpClient blazorHttpClient
+@inject PaginationManager<VacationDto, VacationListQueryDto> pm;
+@inject DialogsService dialogsService;
+
+<PageTitle>Cereri de concediu</PageTitle>
+
+@*<div class="d-flex justify-space-between flex-grow-1 gap-4">
+    <div>
+        <MudChip Color="Color.Warning">În așteptare</MudChip>
+        <MudChip Color="Color.Success">Aprobați</MudChip>
+        <MudChip Color="Color.Error">Respinși</MudChip>
+    </div>
+    <div class="d-flex flex-column flex-grow-1 gap-4">
+        <MudButton Class="ml-auto" StartIcon="@Icons.Material.Filled.Add" Variant="Variant.Filled" Color="Color.Success" OnClick="() => OpenDialog()">Adaugă Concediu</MudButton>
+        <MudText Class="ml-auto"> Total zile de concediu disponibile: 21</MudText>
+    </div>
+</div>*@
+
+<MudChip Color="Color.Warning" Disabled="@(selectedTab == VacationStatus.Pending)" OnClick="() => ChangeTab(VacationStatus.Pending)">În așteptare</MudChip>
+<MudChip Color="Color.Success" Disabled="@(selectedTab == VacationStatus.Approved)" OnClick="() => ChangeTab(VacationStatus.Approved)">Aprobați</MudChip>
+<MudChip Color="Color.Error" Disabled="@(selectedTab == VacationStatus.Rejected)" OnClick="() => ChangeTab(VacationStatus.Rejected)">Respinși</MudChip>
+
+<MudTable Items="@pm.Items" T="VacationDto" Hover="true" Class="mt-3" HorizontalScrollbar="true">
+    <HeaderContent>
+        <MudTh>Angajatul</MudTh>
+        <MudTh>Tipul concediul</MudTh>
+        <MudTh>De la</MudTh>
+        <MudTh>Până la</MudTh>
+        <MudTh>Data</MudTh>
+        <MudTh>Zile de concediu</MudTh>
+        <MudTh>Mențiuni</MudTh>
+       @if(selectedTab == VacationStatus.Pending)
+        {
+            <MudTh>Acțiuni</MudTh>
+        }
+    </HeaderContent>
+    <RowTemplate Context="vacation">
+        <MudTd>@vacation.UserName</MudTd>
+        <MudTd>@vacation.Type.ToDisplayName()</MudTd>
+        <MudTd>@vacation.FromDate</MudTd>
+        <MudTd>@vacation.ToDate</MudTd>
+        <MudTd>@vacation.RequestedAt</MudTd>
+        <MudTd>@vacation.Mentions</MudTd>
+        <MudTd>21</MudTd>
+        @if(selectedTab == VacationStatus.Pending)
+        {
+            <MudTh>
+                <MudIconButton Icon="@Icons.Material.Filled.LibraryAddCheck" Variant="Variant.Filled" Color="Color.Success" OnClick="() => UpdateLodgeTransferRequest(vacation.Id, VacationStatus.Approved)"></MudIconButton>
+                <MudIconButton Icon="@Icons.Material.Filled.Backspace" Variant="Variant.Filled" Color="Color.Error" OnClick="() => UpdateLodgeTransferRequest(vacation.Id, VacationStatus.Rejected)"></MudIconButton>
+            </MudTh>
+        }
+    </RowTemplate>
+</MudTable>
+
+@if (pm.Items != null && pm.Items.Any())
+{
+    <MudGrid Class="mt-6">
+        <MudItem xs="8">
+            <MudPagination Color="Color.Primary" Count="@pm.PageDetails.TotalPages" Selected="@pm.PageDetails.CurrentPage" SelectedChanged="pm.PageChanged" />
+        </MudItem>
+        <MudItem xs="4">
+            <MudText Align="Align.Right">Total articole filtrate: @pm.PageDetails.TotalCount</MudText>
+        </MudItem>
+    </MudGrid>
+}
+
+@code {
+
+    private VacationStatus selectedTab = VacationStatus.Pending;
+
+    protected override async Task OnInitializedAsync()
+    {
+        pm.SetRequestUrl(ApplicationEndpoints.Vacations);
+
+        pm.QueryModel.Statuses.Add(selectedTab);
+
+        await pm.Search();
+    }
+
+    private async Task ChangeTab(VacationStatus status)
+    {
+        pm.QueryModel = new VacationListQueryDto();
+
+        pm.QueryModel.Statuses.Add(status);
+
+        await pm.Search();
+
+        selectedTab = status;
+    }
+
+    private async Task UpdateLodgeTransferRequest(int vacationRequestId, VacationStatus status)
+    {
+        var editModel = new EditVacationRequestStatus
+        {
+            Status = status
+        };
+        var vacation = pm.Items.Where(v => v.Id == vacationRequestId).FirstOrDefault();
+
+        var confirmed = await dialogsService.OpenConfirmationDialog($"Esti sigur ca vrei sa {(status == VacationStatus.Approved ? "aprobi" : "respingi")} cererea de concediu al {vacation.UserName}?");
+
+        if (confirmed)
+        {
+            await blazorHttpClient.Patch(ApplicationEndpoints.Vacations + $"/{vacationRequestId}", editModel);
+
+            await pm.Search();
+        }
+    }
+}

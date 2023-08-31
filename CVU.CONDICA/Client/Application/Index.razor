@@ -1,0 +1,33 @@
+﻿@page "/application"
+
+@using CVU.CONDICA.Client.Constants
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.Authorization;
+
+@inject NavigationManager navigationNamanger;
+@inject IAuthorizationService authorizationService;
+@inject AuthenticationStateProvider AuthenticationStateProvider
+
+
+@code {
+
+    protected async override Task OnInitializedAsync()
+    {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+
+        var isAuthenticated = authState.User?.Identity?.IsAuthenticated;
+
+        bool isActivated = (await authorizationService.AuthorizeAsync(authState.User, "AccountActivated")).Succeeded;
+
+
+        if (isAuthenticated.HasValue && isActivated && isAuthenticated.Value)
+        {
+            navigationNamanger.NavigateTo("/application/user-details/0");
+        }
+        else
+        {
+            navigationNamanger.NavigateTo("/");
+        }
+
+    }
+}

@@ -1,0 +1,27 @@
+﻿@page "/"
+
+@using CVU.CONDICA.Client.Constants
+@using Microsoft.AspNetCore.Authorization
+
+@inject NavigationManager navigationNamanger;
+@inject IAuthorizationService authorizationService;
+@inject AuthenticationStateProvider AuthenticationStateProvider
+
+@code {
+
+    protected async override Task OnInitializedAsync()
+    {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+
+        bool isActivated = (await authorizationService.AuthorizeAsync(authState.User, "AccountActivated")).Succeeded;
+
+        if (isActivated)
+        {
+            navigationNamanger.NavigateTo(ApplicationComponents.Application, true);
+        }
+        else
+        {
+            navigationNamanger.NavigateTo(ApplicationComponents.Authentication);
+        }
+    }
+}

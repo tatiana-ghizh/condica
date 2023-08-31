@@ -1,0 +1,428 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\TatianaG\\Desktop\\CVU.CONDICA\\CVU.CONDICA.Application\\CVU.CONDICA.Application.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\TatianaG\\Desktop\\CVU.CONDICA\\CVU.CONDICA.Application\\CVU.CONDICA.Application.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\TatianaG\\Desktop\\CVU.CONDICA\\CVU.CONDICA.Application\\CVU.CONDICA.Application.csproj",
+        "projectName": "CVU.CONDICA.Application",
+        "projectPath": "C:\\Users\\TatianaG\\Desktop\\CVU.CONDICA\\CVU.CONDICA.Application\\CVU.CONDICA.Application.csproj",
+        "packagesPath": "C:\\Users\\TatianaG\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\TatianaG\\Desktop\\CVU.CONDICA\\CVU.CONDICA.Application\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\TatianaG\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "C:\\Users\\TatianaG\\Desktop\\CVU.CONDICA\\CVU.CONDICA.Common\\CVU.CONDICA.Common.csproj": {
+                "projectPath": "C:\\Users\\TatianaG\\Desktop\\CVU.CONDICA\\CVU.CONDICA.Common\\CVU.CONDICA.Common.csproj"
+              },
+              "C:\\Users\\TatianaG\\Desktop\\CVU.CONDICA\\CVU.CONDICA.ExceptionHandling\\CVU.CONDICA.ExceptionHandling.csproj": {
+                "projectPath": "C:\\Users\\TatianaG\\Desktop\\CVU.CONDICA\\CVU.CONDICA.ExceptionHandling\\CVU.CONDICA.ExceptionHandling.csproj"
+              },
+              "C:\\Users\\TatianaG\\Desktop\\CVU.CONDICA\\CVU.CONDICA.Persistence\\CVU.CONDICA.Persistence.csproj": {
+                "projectPath": "C:\\Users\\TatianaG\\Desktop\\CVU.CONDICA\\CVU.CONDICA.Persistence\\CVU.CONDICA.Persistence.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "EPPlus": {
+              "target": "Package",
+              "version": "[6.2.2, )"
+            },
+            "FluentValidation": {
+              "target": "Package",
+              "version": "[11.5.0, )"
+            },
+            "MediatR": {
+              "target": "Package",
+              "version": "[11.1.0, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.5, )"
+            },
+            "Microsoft.Extensions.Identity.Core": {
+              "target": "Package",
+              "version": "[6.0.4, )"
+            },
+            "Microsoft.IdentityModel.Tokens": {
+              "target": "Package",
+              "version": "[6.30.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.2, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[6.30.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\TatianaG\\Desktop\\CVU.CONDICA\\CVU.CONDICA.Common\\CVU.CONDICA.Common.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\TatianaG\\Desktop\\CVU.CONDICA\\CVU.CONDICA.Common\\CVU.CONDICA.Common.csproj",
+        "projectName": "CVU.CONDICA.Common",
+        "projectPath": "C:\\Users\\TatianaG\\Desktop\\CVU.CONDICA\\CVU.CONDICA.Common\\CVU.CONDICA.Common.csproj",
+        "packagesPath": "C:\\Users\\TatianaG\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\TatianaG\\Desktop\\CVU.CONDICA\\CVU.CONDICA.Common\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\TatianaG\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.5, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\TatianaG\\Desktop\\CVU.CONDICA\\CVU.CONDICA.Dto\\CVU.CONDICA.Dto.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\TatianaG\\Desktop\\CVU.CONDICA\\CVU.CONDICA.Dto\\CVU.CONDICA.Dto.csproj",
+        "projectName": "CVU.CONDICA.Dto",
+        "projectPath": "C:\\Users\\TatianaG\\Desktop\\CVU.CONDICA\\CVU.CONDICA.Dto\\CVU.CONDICA.Dto.csproj",
+        "packagesPath": "C:\\Users\\TatianaG\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\TatianaG\\Desktop\\CVU.CONDICA\\CVU.CONDICA.Dto\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\TatianaG\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\TatianaG\\Desktop\\CVU.CONDICA\\CVU.CONDICA.ExceptionHandling.Models\\CVU.CONDICA.ExceptionHandling.Models.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\TatianaG\\Desktop\\CVU.CONDICA\\CVU.CONDICA.ExceptionHandling.Models\\CVU.CONDICA.ExceptionHandling.Models.csproj",
+        "projectName": "CVU.CONDICA.ExceptionHandling.Models",
+        "projectPath": "C:\\Users\\TatianaG\\Desktop\\CVU.CONDICA\\CVU.CONDICA.ExceptionHandling.Models\\CVU.CONDICA.ExceptionHandling.Models.csproj",
+        "packagesPath": "C:\\Users\\TatianaG\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\TatianaG\\Desktop\\CVU.CONDICA\\CVU.CONDICA.ExceptionHandling.Models\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\TatianaG\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\TatianaG\\Desktop\\CVU.CONDICA\\CVU.CONDICA.ExceptionHandling\\CVU.CONDICA.ExceptionHandling.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\TatianaG\\Desktop\\CVU.CONDICA\\CVU.CONDICA.ExceptionHandling\\CVU.CONDICA.ExceptionHandling.csproj",
+        "projectName": "CVU.CONDICA.ExceptionHandling",
+        "projectPath": "C:\\Users\\TatianaG\\Desktop\\CVU.CONDICA\\CVU.CONDICA.ExceptionHandling\\CVU.CONDICA.ExceptionHandling.csproj",
+        "packagesPath": "C:\\Users\\TatianaG\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\TatianaG\\Desktop\\CVU.CONDICA\\CVU.CONDICA.ExceptionHandling\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\TatianaG\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "C:\\Users\\TatianaG\\Desktop\\CVU.CONDICA\\CVU.CONDICA.ExceptionHandling.Models\\CVU.CONDICA.ExceptionHandling.Models.csproj": {
+                "projectPath": "C:\\Users\\TatianaG\\Desktop\\CVU.CONDICA\\CVU.CONDICA.ExceptionHandling.Models\\CVU.CONDICA.ExceptionHandling.Models.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Mvc.Formatters.Json": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\TatianaG\\Desktop\\CVU.CONDICA\\CVU.CONDICA.Persistence\\CVU.CONDICA.Persistence.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\TatianaG\\Desktop\\CVU.CONDICA\\CVU.CONDICA.Persistence\\CVU.CONDICA.Persistence.csproj",
+        "projectName": "CVU.CONDICA.Persistence",
+        "projectPath": "C:\\Users\\TatianaG\\Desktop\\CVU.CONDICA\\CVU.CONDICA.Persistence\\CVU.CONDICA.Persistence.csproj",
+        "packagesPath": "C:\\Users\\TatianaG\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\TatianaG\\Desktop\\CVU.CONDICA\\CVU.CONDICA.Persistence\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\TatianaG\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "C:\\Users\\TatianaG\\Desktop\\CVU.CONDICA\\CVU.CONDICA.Dto\\CVU.CONDICA.Dto.csproj": {
+                "projectPath": "C:\\Users\\TatianaG\\Desktop\\CVU.CONDICA\\CVU.CONDICA.Dto\\CVU.CONDICA.Dto.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.Relational": {
+              "target": "Package",
+              "version": "[7.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[7.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.4, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

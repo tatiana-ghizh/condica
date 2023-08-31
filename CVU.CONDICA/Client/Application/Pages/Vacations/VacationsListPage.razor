@@ -1,0 +1,98 @@
+﻿@page "/application/vacations"
+
+@using CVU.CONDICA.Client.Application.Pages.Vacations.Components;
+@using CVU.CONDICA.Client.Constants;
+@using CVU.CONDICA.Client.Services;
+@using CVU.CONDICA.Dto.Enums;
+@using CVU.CONDICA.Dto.Vacations;
+
+@inject BlazorHttpClient blazorHttpClient
+@inject PaginationManager<VacationDto, VacationListQueryDto> pm;
+@inject DialogsService dialogsService;
+
+<PageTitle>Concediile mele</PageTitle>
+
+<div class="d-flex justify-space-between flex-grow-1 gap-4">
+    <div>
+        <MudChip Color="Color.Warning" Disabled="@(selectedTab == VacationStatus.Pending)" OnClick="() => ChangeTab(VacationStatus.Pending)">În așteptare</MudChip>
+        <MudChip Color="Color.Success" Disabled="@(selectedTab == VacationStatus.Approved)" OnClick="() => ChangeTab(VacationStatus.Approved)">Aprobați</MudChip>
+        <MudChip Color="Color.Error" Disabled="@(selectedTab == VacationStatus.Rejected)" OnClick="() => ChangeTab(VacationStatus.Rejected)">Respinși</MudChip>
+    </div>
+    <div class="d-flex flex-column flex-grow-1 gap-4">
+        <MudButton Class="ml-auto" StartIcon="@Icons.Material.Filled.Add" Variant="Variant.Filled" Color="Color.Success" OnClick="() => OpenDialog()">Adaugă Concediu</MudButton>
+        <MudText Class="ml-auto"> Total zile de concediu disponibile: 21</MudText>
+    </div>
+</div>
+
+<MudTable Items="@pm.Items" T="VacationDto" Hover="true" Class="mt-3" HorizontalScrollbar="true">
+    <HeaderContent>
+        <MudTh>Angajatul</MudTh>
+        <MudTh>Tipul concediul</MudTh>
+        <MudTh>De la</MudTh>
+        <MudTh>Până la</MudTh>
+        <MudTh>Data</MudTh>
+        <MudTh>Mențiuni</MudTh>
+        @if(selectedTab == VacationStatus.Pending)
+        {
+            <MudTh>Acțiuni</MudTh>
+        }
+    </HeaderContent>
+    <RowTemplate Context="vacation">
+        <MudTd>@vacation.UserName</MudTd>
+        <MudTd>@vacation.Type.ToDisplayName()</MudTd>
+        <MudTd>@vacation.FromDate</MudTd>
+        <MudTd>@vacation.ToDate</MudTd>
+        <MudTd>@vacation.RequestedAt</MudTd>
+        <MudTd>@vacation.Mentions</MudTd>
+        @if (selectedTab == VacationStatus.Pending)
+        {
+            <MudTh>
+                <MudIconButton Icon="@Icons.Material.Filled.Edit" Variant="Variant.Filled" Color="Color.Primary" OnClick="() => OpenDialog(vacation.Id)"></MudIconButton>
+            </MudTh>
+        }
+        
+    </RowTemplate>
+</MudTable>
+
+@if (pm.Items != null && pm.Items.Any())
+{
+    <MudGrid Class="mt-6">
+        <MudItem xs="8">
+            <MudPagination Color="Color.Primary" Count="@pm.PageDetails.TotalPages" Selected="@pm.PageDetails.CurrentPage" SelectedChanged="pm.PageChanged" />
+        </MudItem>
+        <MudItem xs="4">
+            <MudText Align="Align.Right">Total articole filtrate: @pm.PageDetails.TotalCount</MudText>
+        </MudItem>
+    </MudGrid>
+}
+
+@code {
+    private VacationStatus selectedTab = VacationStatus.Pending;
+
+    protected override async Task OnInitializedAsync()
+    {
+        pm.SetRequestUrl($"{ApplicationEndpoints.Vacations}/my-vacation");
+
+        pm.QueryModel.Statuses.Add(selectedTab);
+
+        await pm.Search();
+    }
+
+    private async Task ChangeTab(VacationStatus status)
+    {
+        pm.QueryModel = new VacationListQueryDto();
+
+        pm.QueryModel.Statuses.Add(status);
+
+        await pm.Search();
+
+        selectedTab = status;
+    }
+
+    private void OpenDialog(int? id = null)
+    {
+        var callback = async () => { await pm.Search(); StateHasChanged(); };
+
+        dialogsService.OpenCudDialog<ManageVacationPage>("Detalii concediu", id, callback);
+    }
+}

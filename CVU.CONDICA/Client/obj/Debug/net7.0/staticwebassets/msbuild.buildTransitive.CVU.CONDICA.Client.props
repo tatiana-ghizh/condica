@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\CVU.CONDICA.Client.props" />
+</Project>

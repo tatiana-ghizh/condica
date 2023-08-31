@@ -1,0 +1,53 @@
+﻿@using Microsoft.AspNetCore.Components.Authorization
+<MudNavMenu >
+    <MudNavGroup Title="Management Utilizatori" Expanded="true">
+        <AuthorizeView Policy="Administrator">
+            <MudNavLink Href="application/users" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.PersonSearch">@SetName("Utilizatori")</MudNavLink>
+            <MudDivider />
+        </AuthorizeView>
+        <MudDivider />
+    </MudNavGroup>
+
+    <MudNavGroup Title="Management CODWER" Expanded="true">
+        <AuthorizeView Policy="Administrator">
+            <MudNavLink Href="application/companyproject" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Work">@SetName("Proiecte CODWER")</MudNavLink>
+        </AuthorizeView> 
+        <MudDivider />
+        <AuthorizeView Policy="Administrator">
+            <MudNavLink Href="application/positions" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.AssignmentInd">@SetName("Poziții")</MudNavLink>
+        </AuthorizeView>
+        <MudDivider />
+        <AuthorizeView>
+            <MudNavLink Href="application/vacations" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.AirplaneTicket">@SetName("Concediile mele")</MudNavLink>
+        </AuthorizeView>
+        <MudDivider />
+        <AuthorizeView Policy="Administrator">
+            <MudNavLink Href="application/vacationrequests" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.AirplaneTicket">@SetName("Cereri de concediu")</MudNavLink>
+        </AuthorizeView>
+        <MudDivider />
+    </MudNavGroup>
+
+    <MudNavGroup Title="Detaliile Mele" Expanded="true">
+        <AuthorizeView>
+            <MudNavLink Href="application/user-details/0" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.PersonAddAlt">@SetName("Profil")</MudNavLink>
+        </AuthorizeView>
+        <MudDivider />
+    </MudNavGroup>
+
+    
+
+</MudNavMenu>
+
+@code {
+    [Parameter]
+    public Action<string> OnItemChange { get; set; }
+
+    public string SetName(string Name)
+    {
+        OnItemChange.Invoke(Name);
+
+        return Name;
+    }
+}
+
+

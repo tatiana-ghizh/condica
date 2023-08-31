@@ -1,0 +1,137 @@
+is_global = true
+build_property.TargetFramework = net7.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = false
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = browser
+build_property.RootNamespace = CVU.CONDICA.Client
+build_property.RootNamespace = CVU.CONDICA.Client
+build_property.ProjectDir = C:\Users\TatianaG\Desktop\CVU.CONDICA\CVU.CONDICA\Client\
+build_property.RazorLangVersion = 7.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\TatianaG\Desktop\CVU.CONDICA\CVU.CONDICA\Client
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/TatianaG/Desktop/CVU.CONDICA/CVU.CONDICA/Client/App.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/TatianaG/Desktop/CVU.CONDICA/CVU.CONDICA/Client/Application/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25cSW5kZXgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/TatianaG/Desktop/CVU.CONDICA/CVU.CONDICA/Client/Application/Pages/CompanyProject/CompanyProjectListPage.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25cUGFnZXNcQ29tcGFueVByb2plY3RcQ29tcGFueVByb2plY3RMaXN0UGFnZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/TatianaG/Desktop/CVU.CONDICA/CVU.CONDICA/Client/Application/Pages/CompanyProject/Components/ManageCompanyProject.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25cUGFnZXNcQ29tcGFueVByb2plY3RcQ29tcG9uZW50c1xNYW5hZ2VDb21wYW55UHJvamVjdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/TatianaG/Desktop/CVU.CONDICA/CVU.CONDICA/Client/Application/Pages/Home/HomePage.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25cUGFnZXNcSG9tZVxIb21lUGFnZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/TatianaG/Desktop/CVU.CONDICA/CVU.CONDICA/Client/Application/Pages/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25cUGFnZXNcSW5kZXgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/TatianaG/Desktop/CVU.CONDICA/CVU.CONDICA/Client/Application/Pages/Positions/Components/ManagePositionPage.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25cUGFnZXNcUG9zaXRpb25zXENvbXBvbmVudHNcTWFuYWdlUG9zaXRpb25QYWdlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/TatianaG/Desktop/CVU.CONDICA/CVU.CONDICA/Client/Application/Pages/Positions/PositionsListPage.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25cUGFnZXNcUG9zaXRpb25zXFBvc2l0aW9uc0xpc3RQYWdlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/TatianaG/Desktop/CVU.CONDICA/CVU.CONDICA/Client/Application/Pages/UserManagement/Components/UserDetails.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25cUGFnZXNcVXNlck1hbmFnZW1lbnRcQ29tcG9uZW50c1xVc2VyRGV0YWlscy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/TatianaG/Desktop/CVU.CONDICA/CVU.CONDICA/Client/Application/Pages/UserManagement/UserDetailsPage.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25cUGFnZXNcVXNlck1hbmFnZW1lbnRcVXNlckRldGFpbHNQYWdlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/TatianaG/Desktop/CVU.CONDICA/CVU.CONDICA/Client/Application/Pages/UserManagement/UserListPage.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25cUGFnZXNcVXNlck1hbmFnZW1lbnRcVXNlckxpc3RQYWdlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/TatianaG/Desktop/CVU.CONDICA/CVU.CONDICA/Client/Application/Pages/VacationRequests/VacationRequestsPage.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25cUGFnZXNcVmFjYXRpb25SZXF1ZXN0c1xWYWNhdGlvblJlcXVlc3RzUGFnZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/TatianaG/Desktop/CVU.CONDICA/CVU.CONDICA/Client/Application/Pages/Vacations/Components/ManageVacationPage.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25cUGFnZXNcVmFjYXRpb25zXENvbXBvbmVudHNcTWFuYWdlVmFjYXRpb25QYWdlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/TatianaG/Desktop/CVU.CONDICA/CVU.CONDICA/Client/Application/Pages/Vacations/VacationsListPage.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25cUGFnZXNcVmFjYXRpb25zXFZhY2F0aW9uc0xpc3RQYWdlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/TatianaG/Desktop/CVU.CONDICA/CVU.CONDICA/Client/Application/Shared/ApplicationLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25cU2hhcmVkXEFwcGxpY2F0aW9uTGF5b3V0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/TatianaG/Desktop/CVU.CONDICA/CVU.CONDICA/Client/Application/Shared/SurveyPrompt.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25cU2hhcmVkXFN1cnZleVByb21wdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/TatianaG/Desktop/CVU.CONDICA/CVU.CONDICA/Client/Application/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25cX0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/TatianaG/Desktop/CVU.CONDICA/CVU.CONDICA/Client/Authentication/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = QXV0aGVudGljYXRpb25cSW5kZXgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/TatianaG/Desktop/CVU.CONDICA/CVU.CONDICA/Client/Authentication/Pages/ChangePassword.razor]
+build_metadata.AdditionalFiles.TargetPath = QXV0aGVudGljYXRpb25cUGFnZXNcQ2hhbmdlUGFzc3dvcmQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/TatianaG/Desktop/CVU.CONDICA/CVU.CONDICA/Client/Authentication/Pages/Login.razor]
+build_metadata.AdditionalFiles.TargetPath = QXV0aGVudGljYXRpb25cUGFnZXNcTG9naW4ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/TatianaG/Desktop/CVU.CONDICA/CVU.CONDICA/Client/Authentication/Pages/ResetPassword.razor]
+build_metadata.AdditionalFiles.TargetPath = QXV0aGVudGljYXRpb25cUGFnZXNcUmVzZXRQYXNzd29yZC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/TatianaG/Desktop/CVU.CONDICA/CVU.CONDICA/Client/Authentication/Shared/AuthenticationLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = QXV0aGVudGljYXRpb25cU2hhcmVkXEF1dGhlbnRpY2F0aW9uTGF5b3V0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/TatianaG/Desktop/CVU.CONDICA/CVU.CONDICA/Client/Authentication/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = QXV0aGVudGljYXRpb25cX0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/TatianaG/Desktop/CVU.CONDICA/CVU.CONDICA/Client/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = SW5kZXgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/TatianaG/Desktop/CVU.CONDICA/CVU.CONDICA/Client/Shared/Components/ConfirmationDialog.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXENvbXBvbmVudHNcQ29uZmlybWF0aW9uRGlhbG9nLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/TatianaG/Desktop/CVU.CONDICA/CVU.CONDICA/Client/Shared/Components/CudDialog.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXENvbXBvbmVudHNcQ3VkRGlhbG9nLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/TatianaG/Desktop/CVU.CONDICA/CVU.CONDICA/Client/Shared/LoadingScreen.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXExvYWRpbmdTY3JlZW4ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/TatianaG/Desktop/CVU.CONDICA/CVU.CONDICA/Client/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/TatianaG/Desktop/CVU.CONDICA/CVU.CONDICA/Client/Application/Shared/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25cU2hhcmVkXE5hdk1lbnUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-a5zurf1pw0
+
+[C:/Users/TatianaG/Desktop/CVU.CONDICA/CVU.CONDICA/Client/Shared/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-yp80flxru0

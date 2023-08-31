@@ -1,0 +1,99 @@
+﻿@using CVU.CONDICA.Client.Constants;
+@using CVU.CONDICA.Client.Services;
+@using CVU.CONDICA.Dto.CompanyProjects;
+@using CVU.CONDICA.Dto.Enums;
+@using CVU.CONDICA.Dto.Vacations;
+
+@inject BlazorHttpClient httpClient;
+
+<MudForm @ref="form" @bind-IsValid="@success">
+    <MudGrid>
+        <MudItem xs="12">
+            <MudSelect T="VacationType" Label="Tipul concediului" Placeholder="Tipul concediului" MultiSelection=false Value="VacationTypeId" ValueChanged="v=> VacationTypeId = v" AnchorOrigin="Origin.BottomCenter">
+                @foreach (var vacationType in vacationTypes)
+                {
+                    <MudSelectItem Value="vacationType">@vacationType.ToDisplayName()</MudSelectItem>
+                }
+            </MudSelect>
+        </MudItem>
+        <MudItem xs="6">
+            <MudDatePicker Label="Data început" @bind-Date="FromDate"></MudDatePicker>
+        </MudItem>
+        <MudItem xs="6">
+            <MudDatePicker Label="Data de încheiere" @bind-Date="ToDate"></MudDatePicker>
+        </MudItem>
+        <MudItem xs="12">
+            <MudTextField @bind-Value="Mentions" Label="Mențiuni" Required="false" Variant="Variant.Text"></MudTextField>
+        </MudItem>
+    </MudGrid>
+    <MudButton StartIcon="@Icons.Material.Filled.Save" Disabled="@(!success)" Class="mt-5" Variant="Variant.Filled" OnClick="@Save" Color="Color.Primary">Salvează</MudButton>
+</MudForm>
+
+@code {
+
+    [Parameter]
+    public int? Id { get; set; }
+    [Parameter]
+    public bool? Check { get; set; }
+    [Parameter]
+    public Func<Task> Callback { get; set; }
+
+    MudForm form;
+
+    private bool success = false;
+
+    private string Mentions { get; set; }
+    public DateTime? FromDate { get; set; }
+    public DateTime? ToDate { get; set; }
+    public VacationType VacationTypeId { get; set; }
+
+    private VacationDto vacation;
+    private EditVacationDto original;
+    private EditVacationDto edited;
+
+    private IEnumerable<VacationType> vacationTypes = Enum.GetValues(typeof(VacationType)).Cast<VacationType>();
+
+    protected async override Task OnInitializedAsync()
+    {
+        if (Id.HasValue)
+        {
+            vacation = await httpClient.Get<VacationDto>($"{ApplicationEndpoints.Vacations}/{Id}");
+
+            VacationTypeId = vacation.Type;
+            FromDate = vacation.FromDate;
+            ToDate = vacation.ToDate;
+            Mentions = vacation.Mentions;
+        }
+        else
+        {
+            VacationTypeId = VacationType.Anual;
+        }
+    }
+
+    private async Task Save()
+    {
+        bool isSuccessfull = false;
+
+        if (!Id.HasValue)
+        {
+            var postModel = new CreateVacationDto(VacationTypeId, FromDate.Value, ToDate.Value, Mentions);
+
+            var id = await httpClient.Post<CreateVacationDto, int>(ApplicationEndpoints.Vacations, postModel);
+
+            isSuccessfull = id != 0;
+
+            Id = id;
+        }
+        else
+        {
+            var original = new EditVacationDto(vacation.Type, vacation.FromDate, vacation.ToDate, vacation.Mentions);
+            var edited = new EditVacationDto (VacationTypeId, FromDate, ToDate, Mentions);
+
+            var model = Generics.GetDifferences<EditVacationDto>(original, edited);
+
+            isSuccessfull = await httpClient.Patch<EditVacationDto>($"{ApplicationEndpoints.Vacations}/update/{Id}", model);
+        }
+
+        if (isSuccessfull) Callback?.Invoke();
+    }
+}

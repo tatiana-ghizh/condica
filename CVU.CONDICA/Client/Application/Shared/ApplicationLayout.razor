@@ -1,0 +1,72 @@
+﻿@using Blazored.LocalStorage
+@using Microsoft.AspNetCore.Authorization
+
+@inject ILocalStorageService localStorage;
+@inject NavigationManager navigationNamanger;
+@inject IAuthorizationService authorizationService;
+@inject AuthenticationStateProvider AuthenticationStateProvider
+
+@inherits LayoutComponentBase
+@layout MainLayout
+
+<AuthorizeView>
+    <MudLayout>
+        <MudAppBar Elevation="0">
+            <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
+            @*<MudText Class="ml-3" Edge="Edge.Start">CODWER</MudText>*@
+            <MudImage Src="qt=q_95.webp" Width="100" Height="100" Elevation="0" Class="rounded-lg" ObjectFit="ObjectFit.ScaleDown" />
+            <MudSpacer />
+            <MudText Typo="Typo.h5" Class="ml-3" Edge="Edge.Start">@ComponentTitle</MudText>
+            <MudSpacer />
+            <MudText Typo="Typo.button" Class="mr-2">@context.User.FindFirst("FirstName")?.Value @context.User.FindFirst("LastName")?.Value</MudText>
+            <MudButton StartIcon="@Icons.Material.Filled.Logout" Color="Color.Inherit" OnClick="@(() => Logout())">Ieșire</MudButton>
+        </MudAppBar>
+
+        <MudDrawer @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Docked" Elevation="1" Variant="DrawerVariant.Responsive">
+            <NavMenu OnItemChange="SelectedComponent" />
+        </MudDrawer>
+        <MudMainContent>
+            <MudContainer Class="ma-2" MaxWidth="MaxWidth.ExtraExtraLarge">
+                @Body
+            </MudContainer>
+        </MudMainContent>
+    </MudLayout>
+</AuthorizeView>
+
+@code {
+
+    bool _drawerOpen = true;
+
+    void DrawerToggle()
+    {
+        _drawerOpen = !_drawerOpen;
+    }
+
+    private bool isActivated;
+
+    private string ComponentTitle = null;
+
+    public void SelectedComponent(string ComponentName)
+    {
+        ComponentTitle = ComponentName;
+    }
+
+    private async Task Logout()
+    {
+        await localStorage.RemoveItemAsync("token");
+
+        navigationNamanger.NavigateTo("/", true);
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+
+        isActivated = (await authorizationService.AuthorizeAsync(authState.User, "AccountActivated")).Succeeded;
+
+        if (!isActivated)
+        {
+            navigationNamanger.NavigateTo("/", true);
+        }
+    }
+}

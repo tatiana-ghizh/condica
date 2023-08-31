@@ -1,0 +1,84 @@
+﻿@using CVU.CONDICA.Client.Constants;
+@using CVU.CONDICA.Client.Services;
+@using CVU.CONDICA.Dto.CompanyProjects;
+
+@inject BlazorHttpClient httpClient;
+
+<MudForm @ref="form" @bind-IsValid="@success">
+    <MudGrid>
+        <MudItem xs="12">
+            <MudTextField @bind-Value="Name" Label="Denumirea" Required="true" RequiredError="Denumirea este obligatorie!" Variant="Variant.Text"></MudTextField>
+        </MudItem>
+        <MudItem xs="12">
+            <MudTextField @bind-Value="Description" Label="Descrierea" Required="true" RequiredError="Descrierea este obligatorie!" Variant="Variant.Text"></MudTextField>
+        </MudItem>
+        <MudItem xs="6">
+            <MudDatePicker Label="Data început" @bind-Date="StartDay"></MudDatePicker>
+        </MudItem>
+        <MudItem xs="6">
+            <MudDatePicker Label="Data de încheiere" @bind-Date="EndDay"></MudDatePicker>
+        </MudItem>
+    </MudGrid>
+    <MudButton StartIcon="@Icons.Material.Filled.Save" Disabled="@(!success)" Class="mt-5" Variant="Variant.Filled" OnClick="@Save" Color="Color.Primary">Salvează</MudButton>
+</MudForm>
+
+@code {
+
+    [Parameter]
+    public int? Id { get; set; }
+    [Parameter]
+    public bool? Check { get; set; }
+    [Parameter]
+    public Func<Task> Callback { get; set; }
+
+    MudForm form;
+
+    private bool success = false;
+
+    private string Name { get; set; }
+    private string Description { get; set; }
+    public DateTime? StartDay { get; set; }
+    public DateTime? EndDay { get; set; }
+
+    private CompanyProjectDto companyProject;
+
+    protected async override Task OnInitializedAsync()
+    {
+        if (Id.HasValue)
+        {
+            companyProject = await httpClient.Get<CompanyProjectDto>($"{ApplicationEndpoints.CompanyProjects}/{Id}");
+
+            Name = companyProject.Name;
+            Description = companyProject.Description;
+            StartDay = companyProject.StartDay;
+            EndDay = companyProject.EndDay;
+        }
+    }
+
+    private async Task Save()
+    {
+        bool isSuccessfull = false;
+
+        if (!Id.HasValue)
+        {
+            var postModel = new CreateCompanyProjectDto(Name, Description, StartDay.Value, EndDay.Value);
+
+            var id = await httpClient.Post<CreateCompanyProjectDto, int>(ApplicationEndpoints.CompanyProjects, postModel);
+
+            isSuccessfull = id != 0;
+
+            Id = id;
+        }
+        else
+        {
+            var original = new EditCompanyProjectDto(companyProject.Name, companyProject.Description, companyProject.StartDay, companyProject.EndDay);
+            var edited = new EditCompanyProjectDto(Name, Description, StartDay, EndDay);
+
+            var model = Generics.GetDifferences<EditCompanyProjectDto>(original, edited);
+
+            isSuccessfull = await httpClient.Patch<EditCompanyProjectDto>($"{ApplicationEndpoints.CompanyProjects}/{Id}", model);
+        }
+
+        if (isSuccessfull) Callback?.Invoke();
+    }
+}

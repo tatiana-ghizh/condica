@@ -1,0 +1,12 @@
+C:\Users\TatianaG\Desktop\CVU.CONDICA\CVU.CONDICA.ExceptionHandling.Models\bin\Debug\net7.0\CVU.CONDICA.ExceptionHandling.Models.deps.json
+C:\Users\TatianaG\Desktop\CVU.CONDICA\CVU.CONDICA.ExceptionHandling.Models\bin\Debug\net7.0\CVU.CONDICA.ExceptionHandling.Models.dll
+C:\Users\TatianaG\Desktop\CVU.CONDICA\CVU.CONDICA.ExceptionHandling.Models\bin\Debug\net7.0\CVU.CONDICA.ExceptionHandling.Models.pdb
+C:\Users\TatianaG\Desktop\CVU.CONDICA\CVU.CONDICA.ExceptionHandling.Models\obj\Debug\net7.0\CVU.CONDICA.ExceptionHandling.Models.csproj.AssemblyReference.cache
+C:\Users\TatianaG\Desktop\CVU.CONDICA\CVU.CONDICA.ExceptionHandling.Models\obj\Debug\net7.0\CVU.CONDICA.ExceptionHandling.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\TatianaG\Desktop\CVU.CONDICA\CVU.CONDICA.ExceptionHandling.Models\obj\Debug\net7.0\CVU.CONDICA.ExceptionHandling.Models.AssemblyInfoInputs.cache
+C:\Users\TatianaG\Desktop\CVU.CONDICA\CVU.CONDICA.ExceptionHandling.Models\obj\Debug\net7.0\CVU.CONDICA.ExceptionHandling.Models.AssemblyInfo.cs
+C:\Users\TatianaG\Desktop\CVU.CONDICA\CVU.CONDICA.ExceptionHandling.Models\obj\Debug\net7.0\CVU.CONDICA.ExceptionHandling.Models.csproj.CoreCompileInputs.cache
+C:\Users\TatianaG\Desktop\CVU.CONDICA\CVU.CONDICA.ExceptionHandling.Models\obj\Debug\net7.0\CVU.CONDICA.ExceptionHandling.Models.dll
+C:\Users\TatianaG\Desktop\CVU.CONDICA\CVU.CONDICA.ExceptionHandling.Models\obj\Debug\net7.0\refint\CVU.CONDICA.ExceptionHandling.Models.dll
+C:\Users\TatianaG\Desktop\CVU.CONDICA\CVU.CONDICA.ExceptionHandling.Models\obj\Debug\net7.0\CVU.CONDICA.ExceptionHandling.Models.pdb
+C:\Users\TatianaG\Desktop\CVU.CONDICA\CVU.CONDICA.ExceptionHandling.Models\obj\Debug\net7.0\ref\CVU.CONDICA.ExceptionHandling.Models.dll

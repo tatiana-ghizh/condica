@@ -1,0 +1,17 @@
+﻿@page "/application/user-details/{Id}"
+
+@using CVU.CONDICA.Client.Services;
+@using CVU.CONDICA.Client.Application.Pages.UserManagement.Components
+
+@inject BlazorHttpClient httClient;
+
+<PageTitle>Detaliile mele</PageTitle>
+
+<MudText Typo="Typo.h4">Detaliile mele</MudText>
+
+<UserDetails Id="@(int.Parse(Id))"></UserDetails>
+
+@code {
+    [Parameter]
+    public string Id { get; set; }
+}

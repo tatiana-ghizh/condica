@@ -1,0 +1,17 @@
+C:\Users\TatianaG\Desktop\CVU.CONDICA\CVU.CONDICA.Persistence\bin\Debug\net7.0\CVU.CONDICA.Persistence.deps.json
+C:\Users\TatianaG\Desktop\CVU.CONDICA\CVU.CONDICA.Persistence\bin\Debug\net7.0\CVU.CONDICA.Persistence.runtimeconfig.json
+C:\Users\TatianaG\Desktop\CVU.CONDICA\CVU.CONDICA.Persistence\bin\Debug\net7.0\CVU.CONDICA.Persistence.dll
+C:\Users\TatianaG\Desktop\CVU.CONDICA\CVU.CONDICA.Persistence\bin\Debug\net7.0\CVU.CONDICA.Persistence.pdb
+C:\Users\TatianaG\Desktop\CVU.CONDICA\CVU.CONDICA.Persistence\bin\Debug\net7.0\CVU.CONDICA.Dto.dll
+C:\Users\TatianaG\Desktop\CVU.CONDICA\CVU.CONDICA.Persistence\bin\Debug\net7.0\CVU.CONDICA.Dto.pdb
+C:\Users\TatianaG\Desktop\CVU.CONDICA\CVU.CONDICA.Persistence\obj\Debug\net7.0\CVU.CONDICA.Persistence.csproj.AssemblyReference.cache
+C:\Users\TatianaG\Desktop\CVU.CONDICA\CVU.CONDICA.Persistence\obj\Debug\net7.0\CVU.CONDICA.Persistence.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\TatianaG\Desktop\CVU.CONDICA\CVU.CONDICA.Persistence\obj\Debug\net7.0\CVU.CONDICA.Persistence.AssemblyInfoInputs.cache
+C:\Users\TatianaG\Desktop\CVU.CONDICA\CVU.CONDICA.Persistence\obj\Debug\net7.0\CVU.CONDICA.Persistence.AssemblyInfo.cs
+C:\Users\TatianaG\Desktop\CVU.CONDICA\CVU.CONDICA.Persistence\obj\Debug\net7.0\CVU.CONDICA.Persistence.csproj.CoreCompileInputs.cache
+C:\Users\TatianaG\Desktop\CVU.CONDICA\CVU.CONDICA.Persistence\obj\Debug\net7.0\CVU.CONDICA.Persistence.csproj.CopyComplete
+C:\Users\TatianaG\Desktop\CVU.CONDICA\CVU.CONDICA.Persistence\obj\Debug\net7.0\CVU.CONDICA.Persistence.dll
+C:\Users\TatianaG\Desktop\CVU.CONDICA\CVU.CONDICA.Persistence\obj\Debug\net7.0\refint\CVU.CONDICA.Persistence.dll
+C:\Users\TatianaG\Desktop\CVU.CONDICA\CVU.CONDICA.Persistence\obj\Debug\net7.0\CVU.CONDICA.Persistence.pdb
+C:\Users\TatianaG\Desktop\CVU.CONDICA\CVU.CONDICA.Persistence\obj\Debug\net7.0\CVU.CONDICA.Persistence.genruntimeconfig.cache
+C:\Users\TatianaG\Desktop\CVU.CONDICA\CVU.CONDICA.Persistence\obj\Debug\net7.0\ref\CVU.CONDICA.Persistence.dll

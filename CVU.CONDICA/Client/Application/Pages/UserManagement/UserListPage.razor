@@ -1,0 +1,101 @@
+﻿@page "/application/users"
+
+@using CVU.CONDICA.Client.Application.Pages.UserManagement.Components;
+@using CVU.CONDICA.Client.Constants;
+@using CVU.CONDICA.Client.Services;
+@using CVU.CONDICA.Dto.Enums;
+@using CVU.CONDICA.Dto.RequestModels;
+@using CVU.CONDICA.Dto.UserManagement;
+
+@inject BlazorHttpClient blazorHttpClient
+@inject PaginationManager<UserShortDto, UserListQueryModel> pm;
+@inject DialogsService dialogsService;
+
+<PageTitle>Utilizatori</PageTitle>
+
+<div class="d-flex justify-end flex-grow-1 gap-4">
+    <MudButton StartIcon="@Icons.Material.Filled.Add" Variant="Variant.Filled" Color="Color.Success" Class="ml-auto" OnClick="() => OpenDialog()">Adaugă Utilizator</MudButton>
+</div>
+
+<MudExpansionPanel Dense="true" DisableGutters="true" Class="mb-6" Text="Filtre" Icon="@Icons.Material.Filled.Search">
+    <MudForm>
+        <MudGrid>
+            <MudItem xs="4">
+                <MudTextField @bind-Value="pm.QueryModel.EmailAddress" Label="Email"
+                              InputType="InputType.Text" InputMode="InputMode.numeric" MaxLength="13" autocomplete="off" />
+            </MudItem>
+            <MudItem xs="4">
+                <MudTextField @bind-Value="pm.QueryModel.FirstName" Label="Prenume"
+                              InputType="InputType.Text" InputMode="InputMode.numeric" MaxLength="13" autocomplete="off" />
+            </MudItem>
+            <MudItem xs="4">
+                <MudTextField @bind-Value="pm.QueryModel.LastName" Label="Nume"
+                              InputType="InputType.Text" InputMode="InputMode.numeric" MaxLength="13" autocomplete="off" />
+            </MudItem>
+        </MudGrid>
+@*        <MudButton Class="mt-3" Variant="Variant.Filled" Color="Color.Primary" Disabled="pm.Searching" OnClick="pm.Search">
+            @if (pm.Searching)
+            {
+                <MudProgressCircular Size="Size.Small" Indeterminate="true" />
+                <span class="ms-1">căutăm...</span>
+            }
+            else
+            {
+                <MudIcon Icon="@Icons.Material.Filled.Search" />
+                <span class="ms-1">Caută</span>
+            }
+        </MudButton>*@
+    </MudForm>
+</MudExpansionPanel>
+
+<MudTable Items="@pm.Items" T="UserShortDto" Hover="true" Class="mt-3" HorizontalScrollbar="true">
+    <HeaderContent>
+        <MudTh>Nume</MudTh>
+        <MudTh>Email</MudTh>
+        <MudTh>Poziția</MudTh>
+        <MudTh>Rolul</MudTh>
+        <MudTh>Acțiuni</MudTh>
+    </HeaderContent>
+    <RowTemplate Context="user">
+        <MudTd>@user.FullName</MudTd>
+        <MudTd>@user.Email</MudTd>
+        <MudTd>@user.PositionName</MudTd>
+        <MudTd>@user.Role.ToString()</MudTd>
+        <MudTh>
+            @*<MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="() => OpenDialog(user.Id)">Detalii</MudButton>*@
+            <MudIconButton Icon="@Icons.Material.Filled.EditNote" Variant="Variant.Filled" Color="Color.Primary" OnClick="() => OpenDialog(user.Id)"></MudIconButton>
+            <MudIconButton Icon="@Icons.Material.Filled.DeleteForever" Variant="Variant.Filled" Color="Color.Error"></MudIconButton>
+        </MudTh>
+    </RowTemplate>
+</MudTable>
+
+@if (pm.Items != null && pm.Items.Any())
+{
+    <MudGrid Class="mt-6">
+        <MudItem xs="8">
+            <MudPagination Color="Color.Primary" Count="@pm.PageDetails.TotalPages" Selected="@pm.PageDetails.CurrentPage" SelectedChanged="pm.PageChanged" />
+        </MudItem>
+        <MudItem xs="4">
+            <MudText Align="Align.Right">Total articole filtrate: @pm.PageDetails.TotalCount</MudText>
+        </MudItem>
+    </MudGrid>
+}
+
+@code {
+    private IEnumerable<Role> roles = Enum.GetValues(typeof(Role)).Cast<Role>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        pm.SetRequestUrl(ApplicationEndpoints.Users);
+
+        await pm.Search();
+
+    }
+
+    private void OpenDialog(int? id = null)
+    {
+        var callback = async () => { await pm.Search(); StateHasChanged(); };
+
+        dialogsService.OpenCudDialog<UserDetails>("Detalii utilizator", id, callback);
+    }
+}
