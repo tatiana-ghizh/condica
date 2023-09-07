@@ -4,6 +4,7 @@ using CVU.CONDICA.Application.Services.Mapping;
 using CVU.CONDICA.Persistence.Context;
 using FluentValidation;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using static CVU.CONDICA.Application.Account.Utils.AccountService;
 
@@ -35,6 +36,7 @@ namespace CVU.CONDICA.Application.Account.Commands
         public override async Task<LoginResult> Handle(LoginCommand request, CancellationToken cancellationToken)
         {
             var user = AppDbContext.User
+                 .Include(x => x.Position)
                  .FirstOrDefault(d => d.Email == request.Email);
 
             if (user == null)
