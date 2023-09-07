@@ -21,8 +21,6 @@ namespace CVU.CONDICA.Client.Services
                 .Select(x => x.Key)
                 .ToList();
 
-
-
             // Concat all IEnumerable properties into a comma separated string
             foreach (var key in propertyNames)
             {
