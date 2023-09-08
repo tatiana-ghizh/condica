@@ -32,14 +32,14 @@
             <MudItem xs="4">
                 <MudTextField @bind-Value="@user.LastName" Label="Nume" Required="true" RequiredError="Numele este obligatoriu!" Variant="Variant.Text"></MudTextField>
             </MudItem>
-            <MudItem xs="12">
+            @*<MudItem xs="12">
                 <MudSelect T="PositionDto" Label="Poziția" MultiSelection=false Value="@positions.Where(d => d.Id == user.PositionId).First()">
                     @foreach(var position in positions)
                     {
                         <MudSelectItem Value="position" />
                     }
                 </MudSelect>
-            </MudItem>
+            </MudItem>*@
 
             <MudItem xs="6">
                 <MudSelect T="Role" Label="Rol" Disabled="!isAdmin" MultiSelection=false ValueChanged="@(e=> edited.Role = e)" SelectedValues="@roles.Where(d => d == user.Role)" AnchorOrigin="Origin.BottomCenter">
@@ -95,7 +95,7 @@
     {
         var currentUser = await currentUserService.GetAsync();
 
-        positions = await httpClient.Get<IEnumerable<PositionDto>>($"{ApplicationEndpoints.Positions}/positions-dropdown");
+        //positions = await httpClient.Get<IEnumerable<PositionDto>>($"{ApplicationEndpoints.Positions}/positions-dropdown");
 
         if (currentUser.Role == Role.Administrator)
         {

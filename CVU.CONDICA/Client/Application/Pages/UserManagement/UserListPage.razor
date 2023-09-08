@@ -52,14 +52,14 @@
     <HeaderContent>
         <MudTh>Nume</MudTh>
         <MudTh>Email</MudTh>
-        <MudTh>Poziția</MudTh>
+        @*<MudTh>Poziția</MudTh>*@
         <MudTh>Rolul</MudTh>
         <MudTh>Acțiuni</MudTh>
     </HeaderContent>
     <RowTemplate Context="user">
         <MudTd>@user.FullName</MudTd>
         <MudTd>@user.Email</MudTd>
-        <MudTd>@user.PositionName</MudTd>
+        @*<MudTd>@user.PositionName</MudTd>*@
         <MudTd>@user.Role.ToString()</MudTd>
         <MudTh>
             @*<MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="() => OpenDialog(user.Id)">Detalii</MudButton>*@

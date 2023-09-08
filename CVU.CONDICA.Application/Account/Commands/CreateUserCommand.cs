@@ -27,7 +27,7 @@ namespace CVU.CONDICA.Application.Account.Commands
                 Email = command.Email,
                 FirstName = command.FirstName,
                 LastName = command.LastName,
-                PositionId = command.PositionId,
+                //UserPositionId = command.PositionId,
                 IsActivated = true,
                 Password = AccountService.HashPassword(AccountService.Variables.Salt + password),
                 IsBlocked = command.IsBlocked,
