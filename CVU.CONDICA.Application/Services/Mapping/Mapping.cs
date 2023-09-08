@@ -21,8 +21,8 @@ namespace CVU.CONDICA.Application.Services.Mapping
                     Role = d.Role,
                     FirstName = d.FirstName,
                     LastName = d.LastName,
-                    PositionId = (int)d.PositionId,
-                    PositionName = d.Position.Name,
+                    //PositionId = (int)d.UserPositionId,
+                    //PositionName = d.Position.Name,
                     IsBlocked = d.IsBlocked
                 };
 
@@ -39,25 +39,25 @@ namespace CVU.CONDICA.Application.Services.Mapping
                     Email = d.Email,
                     FullName = d.FirstName + " " + d.LastName,
                     Role = d.Role,
-                    PositionId = d.PositionId,
-                    PositionName = d.Position.Name,
+                    //PositionId = d.UserPositionId,
+                    //PositionName = d.Position.Name,
                     SecurityCode = d.SecurityCode,
                 };
             }
         }
 
-        public static Expression<Func<Position, PositionDto>> PositionProjection
-        {
-            get
-            {
-                return d => new PositionDto
-                {
-                    Id = d.Id,
-                    Name = d.Name,
-                    EmployeesNumber = d.Users.Count()
-                };
-            }
-        }
+        //public static Expression<Func<Position, PositionDto>> PositionProjection
+        //{
+        //    get
+        //    {
+        //        return d => new PositionDto
+        //        {
+        //            Id = d.Id,
+        //            Name = d.Name,
+        //            EmployeesNumber = d.Users.Count()
+        //        };
+        //    }
+        //}
 
         public static Expression<Func<CompanyProject, CompanyProjectDto>> CompanyProjectProjection
         {

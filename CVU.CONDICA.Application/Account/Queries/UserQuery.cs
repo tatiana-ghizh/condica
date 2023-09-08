@@ -29,7 +29,7 @@ namespace CVU.CONDICA.Application.Account.Queries
             }
 
             var administrationUser = AppDbContext.User
-                .Include(d => d.Position)
+                //.Include(d => d.Position)
                 .First(d => d.Id == request.Id);
 
             var mappedUser = Mapping.UserProjection.Compile().Invoke(administrationUser);

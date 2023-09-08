@@ -15,6 +15,10 @@ namespace CVU.CONDICA.Persistence.Entities
         public string Email { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string? FatherName { get; set; }
+        public string PhoneNumber { get; set; }
+        public DateTime Birthday { get; set; }
+        public string Idnp { get; set; }
 
         public string Password { get; set; }
 
@@ -28,11 +32,10 @@ namespace CVU.CONDICA.Persistence.Entities
         public DateTime LastUpdatedAt { get; set; }
 
         public Role Role { get; set; }
-        public int? PositionId { get; set; }
-        public virtual Position Position { get; set; }
 
         public virtual ICollection<UserCompanyProject> UserCompanyProjects { get; set; }
         public virtual ICollection<Vacation> Vacations { get; set; }
+        public UserDepartmentRole UserDepartmentRole { get; set; }
 
     }
 
@@ -40,10 +43,7 @@ namespace CVU.CONDICA.Persistence.Entities
     {
         public void Configure(EntityTypeBuilder<User> entity)
         {
-            entity.HasOne(x => x.Position)
-                .WithMany(x => x.Users)
-                .HasForeignKey(x => x.PositionId)
-                .OnDelete(DeleteBehavior.NoAction);
+           
         }
     }
 }

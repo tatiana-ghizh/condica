@@ -16,11 +16,12 @@ namespace CVU.CONDICA.Persistence.Context
         }
 
         public virtual DbSet<User> User { get; set; }
-        public virtual DbSet<Position> Positions { get; set; }
         public virtual DbSet<CompanyProject> CompanyProjects { get; set; }
         public virtual DbSet<UserCompanyProject> UserCompanyProjects { get; set; }
         public virtual DbSet<Vacation> Vacations { get; set; }
-
+        public virtual DbSet<Department> Departments { get; set; }
+        public virtual DbSet<DepartmentRole> DepartmentRoles { get; set; }
+        public virtual DbSet<UserDepartmentRole> UserDepartmentRoles { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
         }
