@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CVU.CONDICA.Dto.Positions
+namespace CVU.CONDICA.Dto.Departments
 {
-    public class EditPositionDto
+    public class EditDepartmentDto
     {
-        public EditPositionDto() { }
-        public EditPositionDto(string name)
+        public EditDepartmentDto() { }
+        public EditDepartmentDto(string name)
         {
             Name = name;
         }

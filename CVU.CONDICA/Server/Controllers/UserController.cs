@@ -1,7 +1,11 @@
 ﻿using CVU.CONDICA.Application.Account.Commands;
 using CVU.CONDICA.Application.Account.Queries;
 using CVU.CONDICA.Application.Account.Utils;
+using CVU.CONDICA.Application.Blobs.Commands;
+using CVU.CONDICA.Application.Blobs.Queries;
 using CVU.CONDICA.Application.Security;
+using CVU.CONDICA.Dto.Blob;
+using CVU.CONDICA.Dto.Enums;
 using CVU.CONDICA.Dto.Pagination;
 using CVU.CONDICA.Dto.RequestModels;
 using CVU.CONDICA.Dto.UserManagement;
@@ -112,6 +116,42 @@ namespace CVU.CONDICA.Server.Controllers
         public async Task ResetPassword([FromBody] ResetPasswordDto model)
         {
             var command = new ResetPasswordCommand(model);
+
+            await Mediator.Send(command);
+        }
+
+        [HttpGet("{id}/blob")]
+        public async Task<IEnumerable<BlobDto>> GetBlobs([FromRoute] int id, [FromQuery] BlobQueryModel queryModel)
+        {
+            var query = new BlobListQuery(id, BlobComponent.User, queryModel);
+
+            return await Mediator.Send(query);
+        }
+
+        [HttpGet("{id}/blob/download/{blobId}")]
+        public async Task<byte[]> DownloadBlobs([FromRoute] int id, [FromRoute] int blobId)
+        {
+            var query = new DownloadBlobQuery(id, blobId);
+
+            var result = await Mediator.Send(query);
+
+            Response.Headers.Add("Access-Control-Expose-Headers", "Content-Disposition");
+
+            return result.Content;
+        }
+
+        [HttpPost("{id}/blob")]
+        public async Task UploadBlob([FromRoute] int id, [FromBody] CreateBlobDto model)
+        {
+            var command = new CreateBlobCommand(id, model.Content, model.Name, model.BlobType, BlobComponent.Article);
+
+            await Mediator.Send(command);
+        }
+
+        [HttpDelete("{id}/blob/{blobId}")]
+        public async Task DeleteBlob([FromRoute] int id, [FromRoute] int blobId)
+        {
+            var command = new DeleteBlobCommand(id, blobId, BlobComponent.Article);
 
             await Mediator.Send(command);
         }

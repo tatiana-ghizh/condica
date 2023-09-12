@@ -10,6 +10,7 @@ namespace CVU.CONDICA.Persistence.Entities
         { 
             UserCompanyProjects = new HashSet<UserCompanyProject>();
             Vacations = new HashSet<Vacation>();
+            BlobUsers = new HashSet<BlobUser>();
         }
         public int Id { get; set; }
         public string Email { get; set; }
@@ -35,6 +36,8 @@ namespace CVU.CONDICA.Persistence.Entities
 
         public virtual ICollection<UserCompanyProject> UserCompanyProjects { get; set; }
         public virtual ICollection<Vacation> Vacations { get; set; }
+        public virtual ICollection<BlobUser> BlobUsers { get; set; }
+
         public UserDepartmentRole UserDepartmentRole { get; set; }
 
     }

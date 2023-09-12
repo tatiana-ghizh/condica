@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CVU.CONDICA.Dto.Enums
+﻿namespace CVU.CONDICA.Dto.Enums
 {
-    internal class BlobType
+    public enum BlobType
     {
+        Image = 1,
+        Pdf = 2,
+        Excel = 3,
+        Word = 4,
     }
 }

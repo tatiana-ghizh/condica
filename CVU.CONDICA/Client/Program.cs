@@ -3,7 +3,7 @@ using CVU.CONDICA.Client;
 using CVU.CONDICA.Client.Services;
 using CVU.CONDICA.Dto.CompanyProjects;
 using CVU.CONDICA.Dto.Enums;
-using CVU.CONDICA.Dto.Positions;
+using CVU.CONDICA.Dto.Departments;
 using CVU.CONDICA.Dto.RequestModels;
 using CVU.CONDICA.Dto.UserManagement;
 using CVU.CONDICA.Dto.Vacations;
@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using MudBlazor.Services;
+using CVU.CONDICA.Dto.DepartmentRoles;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
@@ -23,8 +24,9 @@ builder.Services.AddScoped<CurrentUserService>();
 //register Pagination Service
 builder.Services.AddTransient<PaginationManager<UserShortDto, UserListQueryModel>>();
 builder.Services.AddTransient<PaginationManager<CompanyProjectDto, CompanyProjectListQueryDto>>();
-builder.Services.AddTransient<PaginationManager<PositionDto, PositionListQueryDto>>();
+builder.Services.AddTransient<PaginationManager<DepartmentDto, DepartmentListQueryDto>>();
 builder.Services.AddTransient<PaginationManager<VacationDto, VacationListQueryDto>>();
+builder.Services.AddTransient<PaginationManager<DepartmentRoleDto, DepartmentRoleListQueryDto>>();
 
 builder.Services.AddAuthorizationCore(options =>
 {

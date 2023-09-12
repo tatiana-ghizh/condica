@@ -5,6 +5,7 @@
 @inject NavigationManager navigationNamanger;
 @inject IAuthorizationService authorizationService;
 @inject AuthenticationStateProvider AuthenticationStateProvider
+@inject NavigationManager NavManager
 
 @inherits LayoutComponentBase
 @layout MainLayout
@@ -25,6 +26,7 @@
         <MudDrawer @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Docked" Elevation="1" Variant="DrawerVariant.Responsive">
             <NavMenu OnItemChange="SelectedComponent" />
         </MudDrawer>
+
         <MudMainContent>
             <MudContainer Class="ma-2" MaxWidth="MaxWidth.ExtraExtraLarge">
                 @Body

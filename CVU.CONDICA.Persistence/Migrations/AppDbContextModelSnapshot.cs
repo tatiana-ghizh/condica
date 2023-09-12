@@ -22,6 +22,48 @@ namespace CVU.CONDICA.Persistence.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("CVU.CONDICA.Persistence.Entities.Blob", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("BlobType")
+                        .HasColumnType("int");
+
+                    b.Property<byte[]>("Content")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Blobs");
+                });
+
+            modelBuilder.Entity("CVU.CONDICA.Persistence.Entities.BlobUser", b =>
+                {
+                    b.Property<int>("BlobId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("BlobId", "UserId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("BlobUsers");
+                });
+
             modelBuilder.Entity("CVU.CONDICA.Persistence.Entities.CompanyProject", b =>
                 {
                     b.Property<int>("Id")
@@ -81,6 +123,7 @@ namespace CVU.CONDICA.Persistence.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int?>("DepartmentId")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<string>("DepartmentRoleCode")
@@ -90,6 +133,9 @@ namespace CVU.CONDICA.Persistence.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserCount")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -242,11 +288,32 @@ namespace CVU.CONDICA.Persistence.Migrations
                     b.ToTable("Vacations");
                 });
 
+            modelBuilder.Entity("CVU.CONDICA.Persistence.Entities.BlobUser", b =>
+                {
+                    b.HasOne("CVU.CONDICA.Persistence.Entities.Blob", "Blob")
+                        .WithMany("BlobUsers")
+                        .HasForeignKey("BlobId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CVU.CONDICA.Persistence.Entities.User", "User")
+                        .WithMany("BlobUsers")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Blob");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("CVU.CONDICA.Persistence.Entities.DepartmentRole", b =>
                 {
                     b.HasOne("CVU.CONDICA.Persistence.Entities.Department", "Department")
-                        .WithMany()
-                        .HasForeignKey("DepartmentId");
+                        .WithMany("DepartmentRoles")
+                        .HasForeignKey("DepartmentId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
 
                     b.Navigation("Department");
                 });
@@ -300,9 +367,19 @@ namespace CVU.CONDICA.Persistence.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("CVU.CONDICA.Persistence.Entities.Blob", b =>
+                {
+                    b.Navigation("BlobUsers");
+                });
+
             modelBuilder.Entity("CVU.CONDICA.Persistence.Entities.CompanyProject", b =>
                 {
                     b.Navigation("UserCompanyProjects");
+                });
+
+            modelBuilder.Entity("CVU.CONDICA.Persistence.Entities.Department", b =>
+                {
+                    b.Navigation("DepartmentRoles");
                 });
 
             modelBuilder.Entity("CVU.CONDICA.Persistence.Entities.DepartmentRole", b =>
@@ -312,6 +389,8 @@ namespace CVU.CONDICA.Persistence.Migrations
 
             modelBuilder.Entity("CVU.CONDICA.Persistence.Entities.User", b =>
                 {
+                    b.Navigation("BlobUsers");
+
                     b.Navigation("UserCompanyProjects");
 
                     b.Navigation("UserDepartmentRole")
