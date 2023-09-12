@@ -1,21 +1,21 @@
-﻿@*@page "/application/positions"
+﻿@page "/application/departments"
 
-@using CVU.CONDICA.Client.Application.Pages.Positions.Components;
+@using CVU.CONDICA.Client.Application.Pages.Departments.Components;
 @using CVU.CONDICA.Client.Constants;
 @using CVU.CONDICA.Client.Services;
-@using CVU.CONDICA.Dto.Positions;
+@using CVU.CONDICA.Dto.Departments;
 
 @inject BlazorHttpClient blazorHttpClient
-@inject PaginationManager<PositionDto, PositionListQueryDto> pm;
+@inject PaginationManager<DepartmentDto, DepartmentListQueryDto> pm;
 @inject DialogsService dialogsService;
 
-<PageTitle>Poziții</PageTitle>
+<PageTitle>Departamente</PageTitle>
 
 <div class="d-flex justify-end flex-grow-1 gap-4">
-    <MudButton StartIcon="@Icons.Material.Filled.Add" Variant="Variant.Filled" Color="Color.Success" Class="ml-auto" OnClick="() => OpenDialog()">Adaugă Poziție</MudButton>
+    <MudButton StartIcon="@Icons.Material.Filled.Add" Variant="Variant.Filled" Color="Color.Success" Class="ml-auto" OnClick="() => OpenDialog()">Adaugă Departament</MudButton>
 </div>
 
-<MudTable Items="@pm.Items" T="PositionDto" Hover="true" Class="mt-3" HorizontalScrollbar="true">
+<MudTable Items="@pm.Items" T="DepartmentDto" Hover="true" Class="mt-3" HorizontalScrollbar="true">
     <HeaderContent>
         <MudTh>Denumirea</MudTh>
         <MudTh>Numărul angajaților</MudTh>
@@ -25,16 +25,17 @@
         <MudTh></MudTh>
         <MudTh>Acțiuni</MudTh>
     </HeaderContent>
-    <RowTemplate Context="position">
-        <MudTd>@position.Name</MudTd>
-        <MudTd>@position.EmployeesNumber</MudTd>
+    <RowTemplate Context="department">
+        <MudTd>@department.Name</MudTd>
+        @*<MudTd>@department.EmployeesNumber</MudTd>*@
+        <MudTd></MudTd>
         <MudTd></MudTd>
         <MudTd></MudTd>
         <MudTd></MudTd>
         <MudTd></MudTd>
         <MudTh>
-            <MudIconButton Icon="@Icons.Material.Filled.EditNote" Variant="Variant.Filled" Color="Color.Primary" OnClick="() => OpenDialog(position.Id)"></MudIconButton>
-            <MudIconButton Icon="@Icons.Material.Filled.DeleteForever" Variant="Variant.Filled" Color="Color.Error" OnClick="@(async () => await DeletePosition(position.Id))"></MudIconButton>
+            <MudIconButton Icon="@Icons.Material.Filled.EditNote" Variant="Variant.Filled" Color="Color.Primary" OnClick="() => OpenDialog(department.Id)"></MudIconButton>
+            <MudIconButton Icon="@Icons.Material.Filled.DeleteForever" Variant="Variant.Filled" Color="Color.Error" OnClick="@(async () => await DeleteDepartment(department.Id))"></MudIconButton>
         </MudTh>
     </RowTemplate>
 </MudTable>
@@ -54,7 +55,7 @@
 @code {
     protected override async Task OnInitializedAsync()
     {
-        pm.SetRequestUrl(ApplicationEndpoints.Positions);
+        pm.SetRequestUrl(ApplicationEndpoints.Departments);
 
         await pm.Search();
 
@@ -64,15 +65,15 @@
     {
         var callback = async () => { await pm.Search(); StateHasChanged(); };
 
-        dialogsService.OpenCudDialog<ManagePositionPage>("Detalii poziție", id, callback);
+        dialogsService.OpenCudDialog<ManageDepartmentPage>("Detalii Departament", id, callback);
     }
 
-    private async Task DeletePosition(int id)
+    private async Task DeleteDepartment(int id)
     {
         var item = pm.Items.Where(x => x.Id == id).FirstOrDefault();
         var callback = async () => { await pm.Search(); StateHasChanged(); };
 
-        bool confirmed = await dialogsService.OpenConfirmationDialog($"Ești sigur ca doresți să stergi pozitia de {item.Name}?");
+        bool confirmed = await dialogsService.OpenConfirmationDialog($"Ești sigur ca doresți să stergi departamentul {item.Name}?");
 
         if (!confirmed)
         {
@@ -81,9 +82,8 @@
 
         bool successfull = false;
 
-        successfull = await blazorHttpClient.Delete($"{ApplicationEndpoints.Positions}/{id}");
+        successfull = await blazorHttpClient.Delete($"{ApplicationEndpoints.Departments}/{id}");
 
         if (successfull)callback?.Invoke();
     }
 }
-*@

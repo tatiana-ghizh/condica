@@ -1,0 +1,30 @@
+﻿@page "/application/user-details/{Id}"
+@inject NavigationManager navigationManager
+@using CVU.CONDICA.Client.Application.Pages.UserManagement.Components
+
+<MudTabs Outlined="true" Position="@Position" Rounded="true" Border="true" ApplyEffectsToContainer="true" Class="mt-8" PanelClass="pa-6">
+    <MudTabPanel Text="Detaliile profilului">
+        <PageTitle>Detaliile mele</PageTitle>
+            <UserDetails Id="@(int.Parse(Id))"></UserDetails>
+    </MudTabPanel>
+    <MudTabPanel Text="Documente">
+        <PageTitle>Documente</PageTitle>
+        <UserDocuments></UserDocuments>
+    </MudTabPanel>
+    <MudTabPanel Text="TestPage">
+        <PageTitle>TestPage</PageTitle>
+        <UserTestPage></UserTestPage>
+    </MudTabPanel>
+</MudTabs>
+
+@code{
+    [Parameter]
+    public string Id { get; set; }
+
+    public Position Position { get; set; } = Position.Left;
+
+    public void Navigate()
+    {
+        navigationManager.NavigateTo($"application/user-documents");
+    }
+}

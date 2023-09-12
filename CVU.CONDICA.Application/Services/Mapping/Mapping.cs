@@ -1,5 +1,7 @@
-﻿using CVU.CONDICA.Dto.CompanyProjects;
-using CVU.CONDICA.Dto.Positions;
+﻿using CVU.CONDICA.Dto.Blob;
+using CVU.CONDICA.Dto.CompanyProjects;
+using CVU.CONDICA.Dto.DepartmentRoles;
+using CVU.CONDICA.Dto.Departments;
 using CVU.CONDICA.Dto.UserManagement;
 using CVU.CONDICA.Dto.Vacations;
 using CVU.CONDICA.Persistence.Entities;
@@ -46,18 +48,33 @@ namespace CVU.CONDICA.Application.Services.Mapping
             }
         }
 
-        //public static Expression<Func<Position, PositionDto>> PositionProjection
-        //{
-        //    get
-        //    {
-        //        return d => new PositionDto
-        //        {
-        //            Id = d.Id,
-        //            Name = d.Name,
-        //            EmployeesNumber = d.Users.Count()
-        //        };
-        //    }
-        //}
+        public static Expression<Func<Department, DepartmentDto>> DepartmentProjection
+        {
+            get
+            {
+                return d => new DepartmentDto
+                {
+                    Id = d.Id,
+                    Name = d.Name,
+                };
+            }
+        }
+
+        public static Expression<Func<DepartmentRole, DepartmentRoleDto>> DepartmentRoleProjection
+        {
+            get
+            {
+                return d => new DepartmentRoleDto
+                {
+                    Id = d.Id,
+                    Name = d.Name,
+                    DepartmentRoleCode= d.DepartmentRoleCode,
+                    UserCount = d.UserDepartmentRoles.Count(),
+                    DepartmentId = d.DepartmentId.Value,
+                    DepartmentName = d.Department.Name,
+                };
+            }
+        }
 
         public static Expression<Func<CompanyProject, CompanyProjectDto>> CompanyProjectProjection
         {
@@ -89,6 +106,20 @@ namespace CVU.CONDICA.Application.Services.Mapping
                     Mentions = d.Mentions,
                     UserId = d.UserId,
                     UserName = d.User.FirstName + " " + d.User.LastName,
+                };
+            }
+        }
+
+        public static Expression<Func<Blob, BlobDto>> BlobProjection
+        {
+            get
+            {
+                return d => new BlobDto
+                {
+                    Id = d.Id,
+                    BlobType = d.BlobType,
+                    Content = d.Content,
+                    Name = d.Name
                 };
             }
         }

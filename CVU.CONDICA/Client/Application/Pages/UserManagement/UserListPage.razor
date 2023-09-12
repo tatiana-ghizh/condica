@@ -10,6 +10,7 @@
 @inject BlazorHttpClient blazorHttpClient
 @inject PaginationManager<UserShortDto, UserListQueryModel> pm;
 @inject DialogsService dialogsService;
+@inject NavigationManager navigationManager
 
 <PageTitle>Utilizatori</PageTitle>
 
@@ -48,23 +49,24 @@
     </MudForm>
 </MudExpansionPanel>
 
-<MudTable Items="@pm.Items" T="UserShortDto" Hover="true" Class="mt-3" HorizontalScrollbar="true">
+<MudTable Items="@pm.Items" T="UserShortDto" Hover="true" Class="mt-3" HorizontalScrollbar="true" OnRowClick="Navigate">
     <HeaderContent>
         <MudTh>Nume</MudTh>
         <MudTh>Email</MudTh>
-        @*<MudTh>Poziția</MudTh>*@
         <MudTh>Rolul</MudTh>
         <MudTh>Acțiuni</MudTh>
+        <MudTh>Acțiuni123</MudTh>
     </HeaderContent>
     <RowTemplate Context="user">
         <MudTd>@user.FullName</MudTd>
         <MudTd>@user.Email</MudTd>
-        @*<MudTd>@user.PositionName</MudTd>*@
         <MudTd>@user.Role.ToString()</MudTd>
         <MudTh>
-            @*<MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="() => OpenDialog(user.Id)">Detalii</MudButton>*@
             <MudIconButton Icon="@Icons.Material.Filled.EditNote" Variant="Variant.Filled" Color="Color.Primary" OnClick="() => OpenDialog(user.Id)"></MudIconButton>
             <MudIconButton Icon="@Icons.Material.Filled.DeleteForever" Variant="Variant.Filled" Color="Color.Error"></MudIconButton>
+        </MudTh>
+        <MudTh>
+            <MudMenu Icon="@Icons.Material.Filled.MoreVert" />
         </MudTh>
     </RowTemplate>
 </MudTable>
@@ -90,6 +92,11 @@
 
         await pm.Search();
 
+    }
+
+    public void Navigate(TableRowClickEventArgs<UserShortDto> pm)
+    {
+        navigationManager.NavigateTo($"application/user-details/{pm.Item.Id}");
     }
 
     private void OpenDialog(int? id = null)

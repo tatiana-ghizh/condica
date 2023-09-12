@@ -1,6 +1,6 @@
-﻿@*@using CVU.CONDICA.Client.Constants;
+﻿@using CVU.CONDICA.Client.Constants;
 @using CVU.CONDICA.Client.Services;
-@using CVU.CONDICA.Dto.Positions;
+@using CVU.CONDICA.Dto.Departments;
 
 @inject BlazorHttpClient httpClient;
 
@@ -26,16 +26,16 @@
     private bool success = false;
 
     private string Name { get; set; }
-    
-    private PositionDto position;
+
+    private DepartmentDto department;
 
     protected async override Task OnInitializedAsync()
     {
         if (Id.HasValue)
         {
-            position = await httpClient.Get<PositionDto>($"{ApplicationEndpoints.Positions}/{Id}");
+            department = await httpClient.Get<DepartmentDto>($"{ApplicationEndpoints.Departments}/{Id}");
 
-            Name = position.Name;
+            Name = department.Name;
         }
     }
 
@@ -45,9 +45,9 @@
 
         if (!Id.HasValue)
         {
-            var postModel = new CreatePositionDto(Name);
+            var postModel = new CreateDepartmentDto(Name);
 
-            var id = await httpClient.Post<CreatePositionDto, int>(ApplicationEndpoints.Positions, postModel);
+            var id = await httpClient.Post<CreateDepartmentDto, int>(ApplicationEndpoints.Departments, postModel);
 
             isSuccessfull = id != 0;
 
@@ -55,15 +55,14 @@
         }
         else
         {
-            var original = new EditPositionDto(position.Name);
-            var edited = new EditPositionDto(Name);
+            var original = new EditDepartmentDto(department.Name);
+            var edited = new EditDepartmentDto(Name);
 
-            var model = Generics.GetDifferences<EditPositionDto>(original, edited);
+            var model = Generics.GetDifferences<EditDepartmentDto>(original, edited);
 
-            isSuccessfull = await httpClient.Patch<EditPositionDto>($"{ApplicationEndpoints.Positions}/{Id}", model);
+            isSuccessfull = await httpClient.Patch<EditDepartmentDto>($"{ApplicationEndpoints.Departments}/{Id}", model);
         }
 
         if (isSuccessfull) Callback?.Invoke();
     }
 }
-*@

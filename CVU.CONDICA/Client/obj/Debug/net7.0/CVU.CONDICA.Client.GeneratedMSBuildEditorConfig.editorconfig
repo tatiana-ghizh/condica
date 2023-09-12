@@ -32,6 +32,22 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25cUGFnZXNcQ29tcGFueVByb2plY3RcQ29tcG9uZW50c1xNYW5hZ2VDb21wYW55UHJvamVjdC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/TatianaG/Desktop/CVU.CONDICA/CVU.CONDICA/Client/Application/Pages/DepartmentRoles/Components/ManageDepartmentRolePage.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25cUGFnZXNcRGVwYXJ0bWVudFJvbGVzXENvbXBvbmVudHNcTWFuYWdlRGVwYXJ0bWVudFJvbGVQYWdlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/TatianaG/Desktop/CVU.CONDICA/CVU.CONDICA/Client/Application/Pages/DepartmentRoles/DepartmentRolesListPage.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25cUGFnZXNcRGVwYXJ0bWVudFJvbGVzXERlcGFydG1lbnRSb2xlc0xpc3RQYWdlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/TatianaG/Desktop/CVU.CONDICA/CVU.CONDICA/Client/Application/Pages/Departments/Components/ManageDepartmentPage.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25cUGFnZXNcRGVwYXJ0bWVudHNcQ29tcG9uZW50c1xNYW5hZ2VEZXBhcnRtZW50UGFnZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/TatianaG/Desktop/CVU.CONDICA/CVU.CONDICA/Client/Application/Pages/Departments/DepartmentsListPage.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25cUGFnZXNcRGVwYXJ0bWVudHNcRGVwYXJ0bWVudHNMaXN0UGFnZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/TatianaG/Desktop/CVU.CONDICA/CVU.CONDICA/Client/Application/Pages/Home/HomePage.razor]
 build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25cUGFnZXNcSG9tZVxIb21lUGFnZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
@@ -40,16 +56,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25cUGFnZXNcSW5kZXgucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/TatianaG/Desktop/CVU.CONDICA/CVU.CONDICA/Client/Application/Pages/Positions/Components/ManagePositionPage.razor]
-build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25cUGFnZXNcUG9zaXRpb25zXENvbXBvbmVudHNcTWFuYWdlUG9zaXRpb25QYWdlLnJhem9y
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/TatianaG/Desktop/CVU.CONDICA/CVU.CONDICA/Client/Application/Pages/Positions/PositionsListPage.razor]
-build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25cUGFnZXNcUG9zaXRpb25zXFBvc2l0aW9uc0xpc3RQYWdlLnJhem9y
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/TatianaG/Desktop/CVU.CONDICA/CVU.CONDICA/Client/Application/Pages/UserManagement/Components/UserDetails.razor]
 build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25cUGFnZXNcVXNlck1hbmFnZW1lbnRcQ29tcG9uZW50c1xVc2VyRGV0YWlscy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/TatianaG/Desktop/CVU.CONDICA/CVU.CONDICA/Client/Application/Pages/UserManagement/Components/UserDocuments.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25cUGFnZXNcVXNlck1hbmFnZW1lbnRcQ29tcG9uZW50c1xVc2VyRG9jdW1lbnRzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/TatianaG/Desktop/CVU.CONDICA/CVU.CONDICA/Client/Application/Pages/UserManagement/Components/UserTestPage.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25cUGFnZXNcVXNlck1hbmFnZW1lbnRcQ29tcG9uZW50c1xVc2VyVGVzdFBhZ2UucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/TatianaG/Desktop/CVU.CONDICA/CVU.CONDICA/Client/Application/Pages/UserManagement/UserDetailsPage.razor]
@@ -58,6 +74,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/TatianaG/Desktop/CVU.CONDICA/CVU.CONDICA/Client/Application/Pages/UserManagement/UserListPage.razor]
 build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25cUGFnZXNcVXNlck1hbmFnZW1lbnRcVXNlckxpc3RQYWdlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/TatianaG/Desktop/CVU.CONDICA/CVU.CONDICA/Client/Application/Pages/UserManagement/UserProfileNavigation.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25cUGFnZXNcVXNlck1hbmFnZW1lbnRcVXNlclByb2ZpbGVOYXZpZ2F0aW9uLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/TatianaG/Desktop/CVU.CONDICA/CVU.CONDICA/Client/Application/Pages/VacationRequests/VacationRequestsPage.razor]

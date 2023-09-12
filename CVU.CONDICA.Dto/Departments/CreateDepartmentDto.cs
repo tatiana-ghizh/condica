@@ -1,12 +1,13 @@
-﻿namespace CVU.CONDICA.Dto.Positions
+﻿namespace CVU.CONDICA.Dto.Departments
 {
-    public class CreatePositionDto
+    public class CreateDepartmentDto
     {
-        public CreatePositionDto() { }
-        public CreatePositionDto(string name) 
+        public CreateDepartmentDto() { }
+        public CreateDepartmentDto(string name) 
         { 
             Name = name;
         }
         public string Name { get; set; }
     }
 }
+

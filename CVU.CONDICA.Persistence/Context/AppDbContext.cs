@@ -22,6 +22,8 @@ namespace CVU.CONDICA.Persistence.Context
         public virtual DbSet<Department> Departments { get; set; }
         public virtual DbSet<DepartmentRole> DepartmentRoles { get; set; }
         public virtual DbSet<UserDepartmentRole> UserDepartmentRoles { get; set; }
+        public virtual DbSet<Blob> Blobs { get; set; }
+        public virtual DbSet<BlobUser> BlobUsers { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
         }

@@ -2,7 +2,7 @@
 @using CVU.CONDICA.Client.Services;
 @using CVU.CONDICA.Dto.Enums;
 @using CVU.CONDICA.Dto.Generic;
-@using CVU.CONDICA.Dto.Positions;
+@using CVU.CONDICA.Dto.Departments;
 @using CVU.CONDICA.Dto.UserManagement;
 @using System.Reflection
 @using Microsoft.AspNetCore.Components.Authorization;
@@ -11,6 +11,7 @@
 @inject Services.DialogsService confirmationService;
 @inject AuthenticationStateProvider AuthenticationStateProvider;
 @inject CurrentUserService currentUserService;
+@inject NavigationManager NavigationManager
 
 @if (user != null)
 {
@@ -89,7 +90,7 @@
     private EditUserDto edited;
 
     private IEnumerable<Role> roles = Generics.Enumerate<Role>();
-    private IEnumerable<PositionDto> positions = Enumerable.Empty<PositionDto>();
+    private IEnumerable<DepartmentDto> positions = Enumerable.Empty<DepartmentDto>();
 
     protected async override Task OnInitializedAsync()
     {

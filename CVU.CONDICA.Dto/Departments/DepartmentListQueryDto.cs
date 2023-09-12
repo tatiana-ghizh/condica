@@ -1,8 +1,8 @@
 ﻿using CVU.CONDICA.Dto.Pagination;
 
-namespace CVU.CONDICA.Dto.Positions
+namespace CVU.CONDICA.Dto.Departments
 {
-    public class PositionListQueryDto : PaginatedQueryParameter
+    public class DepartmentListQueryDto : PaginatedQueryParameter
     {
         public string Name { get; set; }
     }

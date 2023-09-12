@@ -1,0 +1,67 @@
+﻿@page "/application/departmentRoles"
+@using CVU.CONDICA.Client.Application.Pages.DepartmentRoles.Components;
+@using CVU.CONDICA.Client.Constants;
+@using CVU.CONDICA.Client.Services;
+@using CVU.CONDICA.Dto.DepartmentRoles;
+
+@inject BlazorHttpClient blazorHttpClient
+@inject PaginationManager<DepartmentRoleDto, DepartmentRoleListQueryDto> pm;
+@inject DialogsService dialogsService;
+
+<PageTitle>Funcții</PageTitle>
+
+<div class="d-flex justify-end flex-grow-1 gap-4">
+    <MudButton StartIcon="@Icons.Material.Filled.Add" Variant="Variant.Filled" Color="Color.Success" Class="ml-auto" OnClick="() => OpenDialog()">Adaugă Funcția</MudButton>
+</div>
+
+<MudTable Items="@pm.Items" T="DepartmentRoleDto" Hover="true" Class="mt-3" HorizontalScrollbar="true">
+    <HeaderContent>
+        <MudTh>Denumirea</MudTh>
+        <MudTh>Codul funcției</MudTh>
+        <MudTh>Numărul angajaților</MudTh>
+        <MudTh>Departamentul</MudTh>
+        <MudTh></MudTh>
+        <MudTh></MudTh>
+        <MudTh>Acțiuni</MudTh>
+    </HeaderContent>
+    <RowTemplate Context="departmentRole">
+        <MudTd>@departmentRole.Name</MudTd>
+        <MudTd>@departmentRole.DepartmentRoleCode</MudTd>
+        <MudTd>@departmentRole.UserCount</MudTd>
+        <MudTd>@departmentRole.DepartmentName</MudTd>
+        <MudTd></MudTd>
+        <MudTd></MudTd>
+        <MudTh>
+            <MudIconButton Icon="@Icons.Material.Filled.EditNote" Variant="Variant.Filled" Color="Color.Primary" OnClick="() => OpenDialog(departmentRole.Id)"></MudIconButton>
+            @*<MudIconButton Icon="@Icons.Material.Filled.DeleteForever" Variant="Variant.Filled" Color="Color.Error" OnClick="@(async () => await DeleteDepartment(departmentRole.Id))"></MudIconButton>*@
+        </MudTh>
+    </RowTemplate>
+</MudTable>
+
+@if (pm.Items != null && pm.Items.Any())
+{
+    <MudGrid Class="mt-6">
+        <MudItem xs="8">
+            <MudPagination Color="Color.Primary" Count="@pm.PageDetails.TotalPages" Selected="@pm.PageDetails.CurrentPage" SelectedChanged="pm.PageChanged" />
+        </MudItem>
+        <MudItem xs="4">
+            <MudText Align="Align.Right">Total articole filtrate: @pm.PageDetails.TotalCount</MudText>
+        </MudItem>
+    </MudGrid>
+}
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        pm.SetRequestUrl(ApplicationEndpoints.DepartmentRoles);
+
+        await pm.Search();
+    }
+
+    private void OpenDialog(int? id = null)
+    {
+        var callback = async () => { await pm.Search(); StateHasChanged(); };
+
+        dialogsService.OpenCudDialog<ManageDepartmentRolePage>("Detalii Funcția", id, callback);
+    }
+}
